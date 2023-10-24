@@ -1,0 +1,12 @@
+git clone <url>
+
+git status
+
+git add
+git rm
+
+git commit -m '<message>'
+
+git checkout <branch>
+
+git push origin master
