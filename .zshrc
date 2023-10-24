@@ -1,4 +1,3 @@
-
 alias so='source ~/.zshrc'
 
 alias ls='ls --color=auto'
