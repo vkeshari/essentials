@@ -7,6 +7,6 @@ git rm
 
 git commit -m '<message>'
 
-git checkout <branch>
-
 git push origin master
+
+git checkout <branch>
