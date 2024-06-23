@@ -18,3 +18,5 @@ alias g++='g++ -std=c++20'
 
 alias python='python3'
 alias pip='pip3'
+
+export PATH=$PATH:/opt/homebrew/bin

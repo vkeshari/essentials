@@ -1,3 +1,5 @@
+### git ###
+
 git clone <url>
 
 git status
@@ -10,3 +12,27 @@ git commit -m '<message>'
 git push origin master
 
 git checkout <branch>
+
+
+### pip ###
+
+pip check
+pip list
+
+# Upgrade pip
+pip -U install pip
+
+# Install packages
+pip install <pkg>
+pip uninstall <pkg>
+
+# Upgrade packages
+pip -U install <pkg> # --upgrade
+
+
+### brew ###
+
+brew update
+brew upgrade
+
+brew install <pkg>
