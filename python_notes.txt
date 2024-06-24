@@ -6,7 +6,7 @@ d.values()
 d.items() # tuple
 
 sorted(d)
-sorted(d.items())
+sorted(d.items()) # sorts by key
 
 
 === zip ===
@@ -31,7 +31,10 @@ dt.day # hour, minute, second
 td = timedelta(days = 1) # weeks, days, hours, minutes, seconds, ...
 td.days
 
-datetime.strptime(s, '%Y%m%d')
+# string to / from datetime
+# Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
+dt = datetime.strptime(s, '%Y%m%d')
+dt.strftime('%Y%m%d')
 
 
 === scipy.interpolate ===
@@ -40,5 +43,5 @@ datetime.strptime(s, '%Y%m%d')
 tck = interpolate.splrep(xs, ys, k = 3) # 3: cubic spline
 y_new = interpolate.splev(x_new, tck)
 
-# Monotonic spline interpolation
+# Monotonic spline interpolation (cubic hermite)
 ys_new = interpolate.pchip_interpolate(xs, ys, xs_new)
