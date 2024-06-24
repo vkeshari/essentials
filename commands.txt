@@ -1,4 +1,4 @@
-### git ###
+=== git ===
 
 git clone <url>
 
@@ -14,7 +14,7 @@ git push origin master
 git checkout <branch>
 
 
-### pip ###
+=== pip ===
 
 pip check
 pip list
@@ -30,7 +30,7 @@ pip uninstall <pkg>
 pip -U install <pkg> # --upgrade
 
 
-### brew ###
+=== brew ===
 
 brew update
 brew upgrade
