@@ -1,0 +1,10 @@
+=== scipy.interpolate ===
+
+from scipy import interpolate
+
+# Spline interpolation
+tck = interpolate.splrep(xs, ys, k = 3) # 3: cubic spline
+y_new = interpolate.splev(x_new, tck)
+
+# Monotonic spline interpolation (cubic hermite)
+ys_new = interpolate.pchip_interpolate(xs, ys, xs_new)
