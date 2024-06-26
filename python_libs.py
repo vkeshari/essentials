@@ -25,6 +25,13 @@ dt.strftime('%Y%m%d')
 # Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
 
+### os ###
+from os import listdir
+
+# Iterate files in a directory
+files = listdir('/home/vkeshari/super_secret_files') # returns only file names
+
+
 ### pathlib ###
 from pathlib import Path
 
@@ -36,8 +43,12 @@ q = p / 'work' / 'essentials'
 q.parts
 q.exists()
 q.is_dir()
-q.iterdir()
 
+# Lazily iterate files in a directory
+for path in q.iterdir(): # returns full paths
+  filename = path.parts[-1]
+
+# Write to a file
 output_file = Path(filename)
 output_file.parent.mkdir(exist_ok = True, parents = True) # create missing dirs on path
 

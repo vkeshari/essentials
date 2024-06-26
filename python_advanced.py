@@ -24,7 +24,6 @@ ys_new = interpolate.pchip_interpolate(xs, ys, xs_new)
 
 
 ### scipy.optimize ###
-import numpy as np
 from scipy import optimize
 
 # Fit an exponential curve

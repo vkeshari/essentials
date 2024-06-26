@@ -30,7 +30,7 @@ from matplotlib import animation
 
 def draw_frame(frame):
   axs.clear()
-  # plot
+  # ...
   plt.draw()
 
 writer = animation.FFMpegWriter(fps=60, bitrate=5000)
