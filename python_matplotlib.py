@@ -3,35 +3,50 @@ sys.exit("Reference material. Do not execute.")
 
 
 ### Plot setup ###
-from matplotlib import pyplot
+from matplotlib import pyplot as plt
 
 resolution = tuple([19.2, 10.8]) # 1920 x 1080
 
 # Single plot
-fig, axs = pyplot.subplots(figsize = resolution)
+fig, axs = plt.subplots(figsize = resolution)
 
 # Multiple plots
-fig, axs = pyplot.subplots(nrows = 2, ncols = 3, \
+fig, axs = plt.subplots(nrows = 2, ncols = 3, \
                             sharex = True, sharey = False, \ # Share subplot properties
                             width_ratios = [1, 2, 3], \ # Relative subplot dimensions
                             height_ratios = [2, 3], \
                           )
-# ax === ((ax11, ax12, ax13), (ax21, ax22, ax23))
+# axs === ((ax11, ax12, ax13), (ax21, ax22, ax23))
 
 fig.tight_layout()
 
 # Show or save
-pyplot.show()
+plt.show()
 fig.savefig(filename)
 
 
-### Graph Annotations ###
+### Animation ###
+from matplotlib import animation
+
+def draw_frame(frame):
+  axs.clear()
+  # plot
+  plt.draw()
+
+writer = animation.FFMpegWriter(fps=60, bitrate=5000)
+with writer.saving(fig, filename, dpi=100):
+  for frame in range(1, 1000):
+    draw_frame(frame)
+    writer.grab_frame()
+
+
+### Annotations ###
 
 # Title
-ax.set_title(title_text, fontsize ='xx-large')
+ax.set_title(title_text, fontsize ='xx-large', fontweight='bold')
 
 # Axes label
-ax.set_ylabel(ylabel, fontsize ='x-large')
+ax.set_ylabel(ylabel, fontsize ='x-large', style = 'italic')
 
 # Axes limits and labels
 ax.set_ylim(0, 100)
@@ -45,11 +60,11 @@ axs.grid(True, which = 'both', axis = 'x', alpha = 0.5)
 # axis in ['x', 'y', 'both']
 
 # Horizontal and vertical lines
-pyplot.axhline(y = 50, xmin = 0, xmax = 0.9, linestyle = ':', linewidth = 5)
-pyplot.axvline(x = 1000, ymin = 0.1, color = 'grey', alpha = 0.5, linestyle = '--')
+plt.axhline(y = 50, xmin = 0, xmax = 0.9, linestyle = ':', linewidth = 5)
+plt.axvline(x = 1000, ymin = 0.1, color = 'grey', alpha = 0.5, linestyle = '--')
 
 # Text
-pyplot.text(x = 50, y = 1000, s = str(date), \
+plt.text(x = 50, y = 1000, s = str(date), rotation = 45, \
               alpha = 0.8, fontsize = 'medium', \
               horizontalalignment = 'left', \ # ['left', 'right', 'center']
               verticalalignment = 'top', \ # ['top', 'bottom', 'center']
@@ -74,23 +89,44 @@ for i in range(len(data)): # or use numpy.linscale()
 colors = cm.rainbow(color_stops)
 
 
+### Legend ###
+
+# Provide labels
+ax.legend(labels = labs, loc = 'lower right', fontsize = 'medium')
+# loc in ['upper left', 'center right', 'lower center', 'best', ...]
+
+# Use assigned labels
+line1, _ = ax.plot([1, 2], [1, 2], label = 'RED TEAM')
+line2, _ = ax.plot([3, 4], [4, 3], label = 'BLUE TEAM')
+ax.legend(handles = [line1, line2])
+
+# Colorbar with labels
+cbar = plt.colorbar(line1,
+                      shrink = 0.75, aspect = 50, \ # aspect is y / x
+                      format = "%d", pad = 0.01, \
+                      ticks = [1, 2, 5, 10] \
+                    )
+cbar.ax.tick_params(labelsize = 'medium')
+cbar.set_label('No. of players', 'large')
+
+
 ### Graph Types ###
 
 # Line Chart
-pyplot.plot(xs, ys, \
+plt.plot(xs, ys, \
             linestyle = '-', linewidth = 5, antialiased = True, \
             alpha = 0.5, color = 'darkgrey', \
             )
 # linestyle in ['', '-', '--', ':', '-.']
 
-pyplot.plot(xs, ys, \
+plt.plot(xs, ys, \
             marker = "o", markersize = 5, \
             alpha = 0.5, color = 'orangered', \
             )
 # Markers: https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers
 
 # Scatterplot
-pyplot.scatter(xs, ys, s = sizes, c = cols, \
+plt.scatter(xs, ys, s = sizes, c = cols, \
                 marker = None, alpha = 0.5, \
               )
 
@@ -112,16 +148,15 @@ ax.hist(data, bins = [0, 20, 80, 100], \ # --> bins are [0, 20), [20, 80), [80, 
           label = label, color = 'red', alpha = 0.4)
 
 
-### Animation ###
-from matplotlib import animation
+### Image ###
+import matplotlib.image as mpimg
 
-def draw_frame(frame):
-  axs.clear()
-  # plot
-  pyplot.draw()
+# Read image
+img = mpimg.imread(filename)
 
-writer = animation.FFMpegWriter(fps=60, bitrate=5000)
-with writer.saving(fig, filename, dpi=100):
-  for frame in range(1, 1000):
-    draw_frame(frame)
-    writer.grab_frame()
+# Show image
+fig_extents = [x_min, x_max, y_min, y_max]
+fig_aratio = 1.5 # aspect ratio is y / x, or in ['equal', 'auto']
+ax.imshow(img, extent = fig_extents, aspect = fig_aratio, alpha = 1.0, \
+            cmap='viridis', vmin = 0, vmax = 255, \ # [vmin, vmax] is range of data to plot
+          )
