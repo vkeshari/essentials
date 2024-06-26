@@ -1,22 +1,7 @@
-=== dict ===
+import sys
+sys.exit("Reference material. Do not execute.")
 
-d = {1 : 'a', 2: 'b'}
-d.keys()
-d.values()
-d.items() # tuple
-
-sorted(d)
-sorted(d.items()) # sorts by key
-
-
-=== zip ===
-
-l = [(1, 2), (3, 4)]
-list( zip(*l) ) # --> [(1, 3), (2, 4)]
-
-
-=== datetime ===
-
+### datetime ###
 from datetime import date, datetime, timedelta
 
 d = date.today()
@@ -36,8 +21,7 @@ dt = datetime.strptime('20240101', '%Y%m%d')
 dt.strftime('%Y%m%d')
 
 
-=== pathlib ===
-
+### pathlib ###
 from pathlib import Path
 
 Path.cwd()
@@ -58,21 +42,8 @@ with output_file.open('w') as f: # no need to close file if opened in scope
     f.write(d)
 
 
-=== urllib ===
-
+### urllib ###
 from urllib import request
 
 page = request.urlopen(url)
 text = page.read().decode('utf-8')
-
-
-=== scipy.interpolate ===
-
-from scipy import interpolate
-
-# Spline interpolation
-tck = interpolate.splrep(xs, ys, k = 3) # 3: cubic spline
-y_new = interpolate.splev(x_new, tck)
-
-# Monotonic spline interpolation (cubic hermite)
-ys_new = interpolate.pchip_interpolate(xs, ys, xs_new)
