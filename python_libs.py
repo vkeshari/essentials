@@ -1,6 +1,7 @@
 import sys
 sys.exit("Reference material. Do not execute.")
 
+
 ### datetime ###
 from datetime import date, datetime, timedelta
 
@@ -16,9 +17,9 @@ td = timedelta(days = 1) # weeks, days, hours, minutes, seconds, ...
 td.days
 
 # datetime to/from string
-# Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 dt = datetime.strptime('20240101', '%Y%m%d')
-dt.strftime('%Y%m%d')
+dt.strftime('%Y%m%d') # VERIFY
+# Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
 
 ### pathlib ###

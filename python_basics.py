@@ -1,6 +1,12 @@
 import sys
 sys.exit("Reference material. Do not execute.")
 
+
+### str ###
+
+str(a)
+
+
 ### tuple ###
 
 t = tuple([1, 2, 3])
@@ -48,3 +54,12 @@ m = list( map(lambda i: i + 1, [-1, 0, 1]) ) # --> [0, 1, 2]
 from functools import reduce
 r = reduce (lambda i, j: i + j, [1, 2, 3])    # --> 6
 r = reduce (lambda i, j: i + j, [1, 2, 3], 4) # --> 10
+
+
+### yield ###
+
+
+### math ###
+import math
+
+math.sqrt(100) --> 10
