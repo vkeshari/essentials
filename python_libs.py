@@ -18,8 +18,10 @@ td.days
 
 # datetime to/from string
 d.isoformat()
+dt.isoformat()
+
 dt = datetime.strptime('20240101', '%Y%m%d')
-dt.strftime('%Y%m%d') # VERIFY
+dt.strftime('%Y%m%d')
 # Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
 
@@ -49,3 +51,9 @@ from urllib import request
 
 page = request.urlopen(url)
 text = page.read().decode('utf-8')
+
+
+### regexp ###
+### xml ###
+### json ###
+### pickle ###

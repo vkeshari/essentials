@@ -4,8 +4,12 @@ sys.exit("Reference material. Do not execute.")
 
 ### str ###
 
-str(a)
+# String formatting
+'My name: %s, my age: %d, my favorite number: %0.2f' \
+        % ('Virat', 35, 5.555)
 
+'My name: {name}, my age: {age}, my favorite number: {num:0.2f}. I am {name}.' \
+        .format(name = 'Virat', age = 35, num = 5.555)
 
 ### tuple ###
 
@@ -62,4 +66,12 @@ r = reduce (lambda i, j: i + j, [1, 2, 3], 4) # --> 10
 ### math ###
 import math
 
+math.inf
+math.nan
+math.e
+math.pi
+
 math.sqrt(100) --> 10
+math.log(100, 10) --> 2
+math.pow(3, 2) --> 9
+math.exp(2) --> math.e ^ 2
