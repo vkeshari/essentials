@@ -55,7 +55,7 @@ ax.set_yticks(yticks)
 ax.set_yticklabels([str(y) for y in yticks], fontsize ='large')
 
 # Axes grid
-axs.grid(True, which = 'both', axis = 'x', alpha = 0.5)
+ax.grid(True, which = 'both', axis = 'x', alpha = 0.5)
 # which in ['major', 'minor', 'both']
 # axis in ['x', 'y', 'both']
 
@@ -141,7 +141,7 @@ ax.hist(data, bins = 10, \
           cumulative = False, range = (0, 100), \ # only data in range is plotted
           align = 'mid', \ # align in ['left', 'right', 'mid']
           orientation = 'vertical', \ # orientation in ['horizontal', 'vertical']
-          label = label, color = 'blue', alpha = 0.4)
+          label = label, color = 'blue', alpha = 0.6)
 
 # Histogram with unequal bins
 ax.hist(data, bins = [0, 20, 80, 100], \ # --> bins are [0, 20), [20, 80), [80, 100]
@@ -156,7 +156,7 @@ img = mpimg.imread(filename)
 
 # Show image
 fig_extents = [x_min, x_max, y_min, y_max]
-fig_aratio = 1.5 # aspect ratio is y / x, or in ['equal', 'auto']
+fig_aratio = 1.5 # aspect ratio scales pixels and is y / x, or in ['equal', 'auto']
 ax.imshow(img, extent = fig_extents, aspect = fig_aratio, alpha = 1.0, \
             cmap='viridis', vmin = 0, vmax = 255, \ # [vmin, vmax] is range of data to plot
           )
