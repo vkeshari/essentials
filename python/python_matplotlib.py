@@ -33,8 +33,8 @@ def draw_frame(frame):
   # ...
   plt.draw()
 
-writer = animation.FFMpegWriter(fps=60, bitrate=5000)
-with writer.saving(fig, filename, dpi=100):
+writer = animation.FFMpegWriter(fps = 60, bitrate = 5000)
+with writer.saving(fig, filename, dpi = 100):
   for frame in range(1, 1000):
     draw_frame(frame)
     writer.grab_frame()
@@ -129,6 +129,10 @@ plt.plot(xs, ys, \
 plt.scatter(xs, ys, s = sizes, c = cols, \
                 marker = None, alpha = 0.5, \
               )
+
+# Bar
+ax.bar(xs, ys, width = 10, align = 'edge', \ # align in ['center', 'edge']
+        color = color, alpha = 0.7)
 
 # Horizontal Bars
 ax.barh(y = y_coords, width = vals, align = 'center', \ # align in ['center', 'edge']
