@@ -5,11 +5,16 @@ sys.exit("Reference material. Do not execute.")
 ### numpy ###
 import numpy as np
 
-np.linspace(0, 10, 6) # --> [0, 2, 4, 6, 10]
-np.linspace((0, 0), (10, 20), 3) # --> [[0, 0], [5, 10], [10, 20]]
-
 np.average(data)
 np.percentile(date, 95)
+
+# Floating point range by step
+np.arange(0, 2, 0.5) # --> [0.0, 0.5, 1.0, 1.5]
+np.arange(0.1, 1.5, 0.3) # --> [0.1, 0.4, 0.7, 1.0, 1.3]
+
+# Floating point range by bins
+np.linspace(0, 10, 6) # --> [0, 2, 4, 6, 8, 10]
+np.linspace((0, 0), (10, 20), 3) # --> [[0, 0], [5, 10], [10, 20]]
 
 
 ### scipy.interpolate ###
@@ -30,5 +35,5 @@ from scipy import optimize
 def exp_func(x, a, b, c):
   return a + b * np.exp(-x / c)
 
-(a, b, c), _ = optimize.curve_fit(self.exp_curve_fit_func, xs, ys)
+(a, b, c), _ = optimize.curve_fit(self.exp_func, xs, ys)
 ys_new = [exp_func(x, a, b, c) for x in xs_new]

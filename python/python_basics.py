@@ -55,7 +55,7 @@ sorted(d) # sorted keys
 dict(sorted(d.items())) # sorts by key
 
 # Sort by a value or sub-value in dict
-dict(sorted(i for i in d.items() , key = i[1], reverse = True))
+dict(sorted(d.items() , key = lambda i: i[1], reverse = True))
 
 
 ### zip ###
