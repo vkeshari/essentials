@@ -48,10 +48,11 @@ q.is_dir()
 for path in q.iterdir(): # returns full paths
   filename = path.parts[-1]
 
-# Write to a file
+# Create missing dirs on path
 output_file = Path(filename)
-output_file.parent.mkdir(exist_ok = True, parents = True) # create missing dirs on path
+output_file.parent.mkdir(exist_ok = True, parents = True)
 
+# Write to a file
 with output_file.open('w') as f: # no need to close file if opened in scope
   for d in data:
     f.write(d)
