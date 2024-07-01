@@ -15,10 +15,10 @@ s = 'Hello'
 s.find('l') # --> 2
 
 # String formatting
-'My name: %s, my age: %d, my favorite number: %0.2f' \
+'My name: %s, my age: %3d, my favorite number: %5.2f' \
         % ('Virat', 35, 5.555)
 
-'My name: {name}, my age: {age}, my favorite number: {num:0.2f}. I am {name}.' \
+'My name: {name}, my age: {age:3d}, my favorite number: {num:5.2f}. I am {name}.' \
         .format(name = 'Virat', age = 35, num = 5.555)
 
 

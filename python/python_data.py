@@ -58,6 +58,13 @@ rng.integer(low = 0, high = 10, size = (2, 3))
 rng.choice(['a', 'b', 'c'], size = (2, 3))
 rng.shuffle(['a', 'b', 'c']) # shuffles in-place
 
+# Distributions
+np.random.uniform()
+np.random.uniform(size = 10)
+
+np.random.standard_normal()
+# Distributions: https://numpy.org/doc/stable/reference/random/generator.html#distributions
+
 
 ### scipy.interpolate ###
 from scipy import interpolate
