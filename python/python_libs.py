@@ -53,7 +53,7 @@ output_file = Path(filename)
 output_file.parent.mkdir(exist_ok = True, parents = True)
 
 # Write to a file
-with output_file.open('w') as f: # no need to close file if opened in scope
+with output_file.open('w') as f:
   for d in data:
     f.write(d)
 
@@ -66,6 +66,29 @@ text = page.read().decode('utf-8')
 
 
 ### regexp ###
+
+
 ### xml ###
-### json ###
+
+
 ### pickle ###
+with open(filename, 'wb+') as f:
+  pickle.dump(data, f)
+
+with open(filename, 'rb') as f:
+  data = pickle.load(f)
+
+
+### json ###
+class ClassSerializer(json.JSONEncoder):
+  def default(self, o):
+    if type(o).__name__ == 'ContainerA':
+      return o.field1
+    if type(o).__name__ == 'ContainerB':
+      return o.field2
+
+json.dumps(data, cls = ClassSerializer, \
+          indent = 2, sort_keys = True)
+
+
+

@@ -105,13 +105,27 @@ r = reduce (lambda i, j: i + j, [1, 2, 3])    # --> 6
 r = reduce (lambda i, j: i + j, [1, 2, 3], 4) # --> 10
 
 
+### file ###
+
+with open(read_filename) as f:
+  lines = f.readlines()
+
+with open('workfile', 'w', encoding='utf-8') as f:
+  f.write('abc\n')
+
+
 ### yield ###
 
 # Process a long CSV file
-def yields_lines(file):
-  with open(file, 'r') as f:
-    for l in f.readlines():
-      yield l.split(',')
+def yields_lines(filename):
+  with open(filename, 'r') as f:
+    l = f.readline()
+    while l:
+      yield l.strip().split(',')
+      l = f.readline()
+
+for l in yield_lines('my_data.csv'):
+  pass
 
 
 ### math ###
