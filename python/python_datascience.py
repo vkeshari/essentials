@@ -5,11 +5,22 @@ sys.exit("Reference material. Do not execute.")
 ### numpy ###
 import numpy as np
 
+# Initializers
+np.zeros(5)
+np.ones((5, 2))
+
+# Statistics
 np.average(data)
-np.percentile(date, 95, method = 'nearest') # or use method = 'linear' for continuous
+np.percentile(date, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
+np.percentile(date, 95) # continuous values (method = 'linear')
+
+np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3]) # --> [[2, 3], [1, 2, 3]]
+np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3], density = True) # --> [[0.4, 0.6], [1, 2, 3]]
+
+
+### numpy float ranges ###
 
 # Floating point range by step
-np.arange(min_val, max_val, step) # excludes max_val like range
 np.arange(0, 2, 0.5) # --> [0.0, 0.5, 1.0, 1.5]
 np.arange(0.1, 1.5, 0.3) # --> [0.1, 0.4, 0.7, 1.0, 1.3]
 
@@ -20,7 +31,32 @@ np.linspace((0, 0), (10, 20), 3) # --> [[0, 0], [5, 10], [10, 20]]
 
 # Split a range without rounding errors
 bins = round((max_val - min_val) / step)
-np.linspace(min_val, max_val, bins)
+np.linspace(min_val, max_val, bins + 1)
+
+
+### numpy.random ###
+
+# Random numbers
+np.random.rand()
+np.random.rand(3) # array
+np.random.rand(2, 3) # matrix
+
+np.random.randint(10)
+np.random.randint(low = 0, high = 10, size = (2, 3))
+
+# Random number generator
+rng = np.random.default_rng()
+rng = np.random.default_rng(seed = 100)
+rng = np.random.default_rng(seed = [1, 2, 3])
+
+rng.random()
+rng.random(size = (2, 3))
+
+rng.integer(10)
+rng.integer(low = 0, high = 10, size = (2, 3))
+
+rng.choice(['a', 'b', 'c'], size = (2, 3))
+rng.shuffle(['a', 'b', 'c']) # shuffles in-place
 
 
 ### scipy.interpolate ###

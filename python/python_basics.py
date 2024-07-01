@@ -2,6 +2,13 @@ import sys
 sys.exit("Reference material. Do not execute.")
 
 
+### builtin fns ###
+
+max([1, 2, 3])
+min([1, 2, 3])
+round(1.2)
+
+
 ### str ###
 
 s = 'Hello'
@@ -22,8 +29,12 @@ l.append(4)
 l.pop() # --> 4
 del l[0]
 
+m = [1, 3, 2]
 sorted(l, reverse = True) # --> [3, 2, 1]
-reversed(l)
+reversed(l) # --> [2, 3, 1]
+
+for i, v in enumerate(l):
+  pass
 
 
 ### tuple ###
