@@ -60,9 +60,10 @@ rng.shuffle(['a', 'b', 'c']) # shuffles in-place
 
 # Distributions
 np.random.uniform()
-np.random.uniform(size = 10)
+np.random.uniform(low = 0, high = 10, size = 10) # high included
 
-np.random.standard_normal()
+np.random.normal() # or standard_normal()
+np.random.normal(loc = 5, scale = 1, size = 10) # loc is mean, scale is std
 # Distributions: https://numpy.org/doc/stable/reference/random/generator.html#distributions
 
 
