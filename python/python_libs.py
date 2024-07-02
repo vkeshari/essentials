@@ -89,6 +89,3 @@ class ClassSerializer(json.JSONEncoder):
 
 json.dumps(data, cls = ClassSerializer, \
           indent = 2, sort_keys = True)
-
-
-

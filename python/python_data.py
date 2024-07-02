@@ -14,8 +14,13 @@ np.average(data)
 np.percentile(date, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
 np.percentile(date, 95) # continuous values (method = 'linear')
 
+# Count values in bins
 np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3]) # --> [[2, 3], [1, 2, 3]]
 np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3], density = True) # --> [[0.4, 0.6], [1, 2, 3]]
+
+# Which bin does each value go into
+np.digitize(x = values, bins = bins, right = False) # only works for numbers
+np.searchsorted(a = bins, v = values, side = 'right') # side in ['left', 'right']
 
 
 ### numpy float ranges ###

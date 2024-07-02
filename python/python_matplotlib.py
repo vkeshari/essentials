@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 resolution = tuple([19.2, 10.8]) # 1920 x 1080
 
 # Single plot
-fig, axs = plt.subplots(figsize = resolution)
+fig, ax = plt.subplots(figsize = resolution)
 
 # Multiple plots
 fig, axs = plt.subplots(nrows = 2, ncols = 3, \
@@ -49,7 +49,8 @@ ax.set_title(title_text, fontsize ='xx-large', fontweight='bold')
 ax.set_ylabel(ylabel, fontsize ='x-large', style = 'italic')
 
 # Axes limits and labels
-ax.set_ylim(0, 100)
+plt.yscale('log') # or default 'linear', do this before setting ticks and labels
+ax.set_ylim(0, 100) # doesn't work for log scale
 yticks = range(0, 100, 10)
 ax.set_yticks(yticks)
 ax.set_yticklabels([str(y) for y in yticks], fontsize ='large')

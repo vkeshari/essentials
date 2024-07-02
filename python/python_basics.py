@@ -110,13 +110,13 @@ r = reduce (lambda i, j: i + j, [1, 2, 3], 4) # --> 10
 with open(read_filename) as f:
   lines = f.readlines()
 
-with open('workfile', 'w', encoding='utf-8') as f:
+with open('workfile', 'w', encoding = 'utf-8') as f:
   f.write('abc\n')
 
 
 ### yield ###
 
-# Process a long CSV file
+# Lazily process a long CSV file
 def yields_lines(filename):
   with open(filename, 'r') as f:
     l = f.readline()
