@@ -68,6 +68,9 @@ dict(sorted(d.items())) # sorts by key
 # Sort by a value or sub-value in dict
 dict(sorted(d.items() , key = lambda i: i[1], reverse = True))
 
+# Sort by multiple keys
+dict(sorted(d.items() , key = lambda i: (i[1]['rank'], -i[1]['score']))) # Use -neg for reverse
+
 
 ### zip ###
 
