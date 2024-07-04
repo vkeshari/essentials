@@ -56,7 +56,7 @@ ax.set_yticks(yticks)
 ax.set_yticklabels([str(y) for y in yticks], fontsize ='large')
 
 # Axes grid
-ax.grid(True, which = 'both', axis = 'x', alpha = 0.5)
+ax.grid(True, which = 'both', axis = 'both', alpha = 0.5)
 # which in ['major', 'minor', 'both']
 # axis in ['x', 'y', 'both']
 
@@ -87,14 +87,14 @@ cmap_reverse = 'rainbow_r'
 # Sample N colors from colorscale
 for i in range(len(data)): # or use numpy.linscale()
   color_stops.append(i / len(data))
-colors = cm.rainbow(color_stops)
+colors = cm.tab20(color_stops)
 
 
 ### Legend ###
 
 # Provide labels
-ax.legend(labels = labs, loc = 'lower right', fontsize = 'medium')
-# loc in ['upper left', 'center right', 'lower center', 'best', ...]
+ax.legend(labels = labs, loc = 'best', fontsize = 'medium')
+# loc in ['best', 'upper left', 'center right', 'lower center', ...]
 
 # Use assigned labels
 line1, _ = ax.plot([1, 2], [1, 2], label = 'RED TEAM')
@@ -122,7 +122,7 @@ plt.plot(xs, ys, \
 
 plt.plot(xs, ys, \
             marker = "o", markersize = 5, \
-            alpha = 0.5, color = 'orangered', \
+            alpha = 0.5, markeredgecolor = 'orangered', \
             )
 # Markers: https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers
 

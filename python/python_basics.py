@@ -56,7 +56,7 @@ s & t # boolean operators & | and ^
 ### dict ###
 
 d = {1 : 'a', 2: 'b'}
-d.keys()
+d.keys() # Returns a set
 d.values()
 d.items() # tuple
 
