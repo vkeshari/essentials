@@ -4,14 +4,34 @@ git clone <url>
 
 git status
 
-git add
-git rm
+# Staging and unstaging
+git add <filename>
+git rm <filename>
+git restore --staged <filename>
 
+# Committing staged changes
 git commit -m '<message>'
-
 git push origin master
 
 git checkout <branch>
+
+# Reverting a file
+git restore <filename>
+git restore --source <commithash> <filename>
+git restore --source <branch> index.html
+
+# Reverting workspace
+git reset <commithash>
+
+# Checkout Branch
+git branch
+git checkout <branch>
+
+# Create Branch (alternatives)
+git branch <newbranch>
+git checkout -b <branch>
+git checkout -b <branch> <frombranch>
+
 
 
 ### pip ###
