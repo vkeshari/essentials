@@ -8,9 +8,11 @@ import numpy as np
 # Initializers
 np.zeros(5)
 np.ones((5, 2))
+np.array(list(d.values())) # Must convert dict values to list first
 
 # Statistics
 np.average(data)
+np.std(data)
 np.percentile(date, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
 np.percentile(date, 95) # continuous values (method = 'linear')
 
@@ -22,8 +24,17 @@ np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3]) # --> [[2, 3], [1, 2, 3]]
 np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3], density = True) # --> [[0.4, 0.6], [1, 2, 3]]
 
 # Which bin does each value go into
-np.digitize(x = values, bins = bins, right = False) # only works for numbers
-np.searchsorted(a = bins, v = values, side = 'right') # side in ['left', 'right']
+np.digitize(x, bins, right) # only works for numbers
+np.searchsorted(a, v, side) # side in ['left', 'right']
+
+values = [1, 2, 3, 4, 5]
+bins = [3, 4]
+
+np.digitize(x = values, bins = bins, right = False)   # --> [0, 0, 1, 2, 2]
+np.searchsorted(a = bins, v = values, side = 'right') # --> [0, 0, 1, 2, 2]
+
+np.digitize(x = values, bins = bins, right = True)   # --> [0, 0, 0, 1, 2]
+np.searchsorted(a = bins, v = values, side = 'left') # --> [0, 0, 0, 1, 2]
 
 
 ### numpy matrices ###
