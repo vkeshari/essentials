@@ -1,8 +1,12 @@
-### git###
+### git ###
 
 git clone <url>
 
 git status
+
+# Sync workspace to remote
+git pull  # if no unchanged files
+git merge # if changed files
 
 # Staging and unstaging
 git add <filename>

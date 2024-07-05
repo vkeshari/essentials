@@ -30,11 +30,15 @@ l.pop() # --> 4
 del l[0]
 
 m = [1, 3, 2]
-sorted(l, reverse = True) # --> [3, 2, 1]
-reversed(l) # --> [2, 3, 1]
+sorted(m, reverse = True) # --> [3, 2, 1]
+reversed(m) # --> [2, 3, 1]
 
+# Iterating
 for i, v in enumerate(l):
   pass
+
+# Create list from generators
+list(range(0, 10, 2))
 
 
 ### tuple ###
@@ -49,6 +53,7 @@ s = set()
 s = set([1, 2, 3])
 t = {2, 3, 4}
 
+# Set operations
 s - t
 s & t # boolean operators & | and ^
 
