@@ -36,9 +36,6 @@ This is a new line.
 
 1. One
 2. Two
-  1. Sub-Two
-    1. Sub-Sub-Two
-  2. Another Sub-Two
 3. Three
 
 Always leave a blank line after a list
