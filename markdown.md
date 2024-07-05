@@ -6,14 +6,13 @@
 
 *Italic*
 
+### Extended
+```
 ==Highlight==
-
 ~~Strikethrough~~
-
-Sub~script~ed
-
-Super^script^ed
-
+Sub~script~
+Super^script^
+```
 ## Filenames, commnds, numbers
 
 Contents can be found at `filename.py`.
@@ -24,26 +23,24 @@ This is a new line.
 ## Notes
 
 > :pencil2: **Note:** There is no charge for awesomeness
+
 > :star: **Best Practice:** Don't forget to bring a towel
 
 ## Lists
 
-- Best numbers
-  - 1
-  - 2
-    - 2.5
-  - 3
++ Best numbers
+  + 1
+  + 2
+    + 2.5
+  + 3
 
 1. One
-1. Two
-  1. Sub-Two
-    1. Sub-Sub-Two
-  1. Another Sub-Two
-1. Three
+2. Two
+3. Three
 
 Always leave a blank line after a list
 
-## Code {#h_code}
+## Code
 
 Use this one weird trick to speed up your computer `100x`
 ```
@@ -69,19 +66,24 @@ plt.plot(xs, ys, linewidth = 2, alpha = 0.5)
 ```
 
 > :no_entry_sign: **Deprecated:** This code has now been deprecated. Use package `drawlinefromx1y10tox2y20`.
+> 
 >> :no_entry_sign: **Deprecated:** Package `drawlinefromx1y10tox2y20` is also deprecated.
+>
 
 ## Links
 
+### Extended `{#heading_ref}`
+
 [Dubious source of information](https://google.com)
 
-Go to [Code](#h_code) heading
+`Go to [Extended](#heading_ref) heading`
 
-## Definitions
-
+## Extended: Definitions
+```
 Indo-gangetic plain
 : Vast, fertile, ==densely populated== river basin.
 : Most polluted place on Earth[^poullution].
 : Birthplace of civilization
 
 [^pollution](https://www.iqair.com/au/india/delhi): New Delhi air pollution
+```
