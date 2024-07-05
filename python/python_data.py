@@ -92,3 +92,12 @@ def exp_func(x, a, b, c):
 
 (a, b, c), _ = optimize.curve_fit(self.exp_func, xs, ys)
 ys_new = [exp_func(x, a, b, c) for x in xs_new]
+
+
+### sklearn : 1-d clustering ###
+from sklearn.neighbors import KernelDensity
+
+bandwidth = (max(data) - min(data)) / buckets
+x_new = np.linspace(min(data), max(data), buckets + 1)
+kde = KernelDensity(kernel = 'gaussian', bandwidth = bandwidth).fit(data.reshape(-1, 1))
+y_est = kde.score_samples(x_new.reshape(-1, 1))

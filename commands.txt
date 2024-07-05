@@ -40,7 +40,7 @@ pip check
 pip list
 
 # Upgrade pip
-pip -U install pip
+python -m pip install --upgrade pip
 
 # Install packages
 pip install <pkg>
