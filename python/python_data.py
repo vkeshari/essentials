@@ -27,14 +27,19 @@ np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3], density = True) # --> [[0.4, 0.6
 np.digitize(x, bins, right) # only works for numbers
 np.searchsorted(a, v, side) # side in ['left', 'right']
 
-values = [1, 2, 3, 4, 5]
-bins = [3, 4]
+values = [1, 2, 3, 4, 5, 6]
+bins = [3, 5]
 
-np.digitize(x = values, bins = bins, right = False)   # --> [0, 0, 1, 2, 2]
-np.searchsorted(a = bins, v = values, side = 'right') # --> [0, 0, 1, 2, 2]
+# Match [lower, upper)
+bin_mapping = np.digitize(x = values, bins = bins, right = False)   # --> [0, 0, 1, 2, 2]
+bin_mapping = np.searchsorted(a = bins, v = values, side = 'right') # --> [0, 0, 1, 2, 2]
 
-np.digitize(x = values, bins = bins, right = True)   # --> [0, 0, 0, 1, 2]
-np.searchsorted(a = bins, v = values, side = 'left') # --> [0, 0, 0, 1, 2]
+# Match (lower, upper]
+bin_mapping = np.digitize(x = values, bins = bins, right = True)   # --> [0, 0, 0, 1, 2]
+bin_mapping = np.searchsorted(a = bins, v = values, side = 'left') # --> [0, 0, 0, 1, 2]
+
+# Subtract 1 for actual bin indices
+bin_mapping = [b - 1 for b in bin_mapping]
 
 
 ### numpy matrices ###
