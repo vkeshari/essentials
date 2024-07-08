@@ -1,0 +1,9 @@
+#!/do/not/execute
+
+### Suspend / Resume ###
+<ctrl> + z
+jobs
+fg
+
+### Search command in history ###
+<ctrl> + r

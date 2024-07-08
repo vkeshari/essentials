@@ -22,7 +22,7 @@ git checkout <branch>
 # Reverting a file
 git restore <filename>
 git restore --source <commithash> <filename>
-git restore --source <branch> index.html
+git restore --source <branch> <filename>
 
 # Reverting workspace
 git reset <commithash>

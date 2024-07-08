@@ -130,3 +130,9 @@ x_new = np.linspace(min(data), max(data), buckets + 1)
 kd = KernelDensity(kernel = 'gaussian', bandwidth = bandwidth)
 kde = kd.fit(data.reshape(-1, 1))
 y_est = kde.score_samples(x_new.reshape(-1, 1))
+
+
+### sklearn : Reshape 1-d distribution ###
+from sklearn.preprocessing import power_transform
+
+power_transform(data.reshape(-1, 1)).reshape(1, -1).flatten()
