@@ -25,10 +25,12 @@ git restore --source <commithash> <filename>
 git restore --source <branch> <filename>
 
 # Reverting workspace
-git reset <commithash>
+git restore .
+git reset <commithash> # verify this
 
 # Checkout Branch
 git branch
+git checkout master
 git checkout <branch>
 
 # Create Branch (alternatives)

@@ -16,6 +16,10 @@ np.std(data)
 np.percentile(date, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
 np.percentile(date, 95) # continuous values (method = 'linear')
 
+# Histogram percentiles (returns discrete values)
+bins_shifted = [b + bin_width / 2 for b in bins]
+np.percentile(a = bins_shifted, q = 95, weights = bin_counts, method = 'inverted_cdf')
+
 
 ### numpy histograms ###
 
@@ -42,15 +46,6 @@ bin_mapping = np.searchsorted(a = bins, v = values, side = 'left') # --> [0, 0, 
 bin_mapping = [b - 1 for b in bin_mapping]
 
 
-### numpy matrices ###
-
-# Reshape a matrix
-m = np.array([(1,2,3),(4,5,6)]) # 2x3
-m.reshape(-1, 1) # --> 6x1
-m.reshape(1, -1) # --> 1x6
-m.reshape(-1, 2) # --> 3x2
-
-
 ### numpy float ranges ###
 
 # Floating point range by step
@@ -65,6 +60,15 @@ np.linspace((0, 0), (10, 20), 3) # --> [[0, 0], [5, 10], [10, 20]]
 # Split a range without rounding errors
 bins = round((max_val - min_val) / step)
 np.linspace(min_val, max_val, bins + 1)
+
+
+### numpy matrices ###
+
+# Reshape a matrix
+m = np.array([(1,2,3),(4,5,6)]) # 2x3
+m.reshape(-1, 1) # --> 6x1
+m.reshape(1, -1) # --> 1x6
+m.reshape(-1, 2) # --> 3x2
 
 
 ### numpy.random ###
@@ -112,13 +116,13 @@ ys_new = interpolate.pchip_interpolate(xs, ys, xs_new)
 
 
 ### scipy.optimize ###
-from scipy import optimize
+from scipy.optimize import curve_fit
 
 # Fit an exponential curve
 def exp_func(x, a, b, c):
   return a + b * np.exp(-x / c)
 
-(a, b, c), _ = optimize.curve_fit(self.exp_func, xs, ys)
+(a, b, c), _ = curve_fit(self.exp_func, xs, ys)
 ys_new = [exp_func(x, a, b, c) for x in xs_new]
 
 
@@ -136,3 +140,11 @@ y_est = kde.score_samples(x_new.reshape(-1, 1))
 from sklearn.preprocessing import power_transform
 
 power_transform(data.reshape(-1, 1)).reshape(1, -1).flatten()
+
+
+### fitter : Check which distribution fits data ###
+from fitter import Fitter
+
+f = Fitter(data)
+f.fit()
+print (f.summary(Nbest = 10))
