@@ -51,14 +51,20 @@ ax.set_ylabel(ylabel, fontsize ='x-large', style = 'italic')
 # Axes limits and labels
 plt.yscale('log') # or default 'linear', do this before setting ticks and labels
 ax.set_ylim(0, 100) # doesn't work for log scale
-yticks = range(0, 100, 10)
+
+yticks_major = range(0, 100, 10)
+yticks_minor = range(0, 100)
+
 ax.set_yticks(yticks)
-ax.set_yticklabels([str(y) for y in yticks], fontsize ='large')
+ax.set_yticks(yticks, minor = True)
+
+ax.set_yticklabels([str(y) for y in yticks_major], fontsize ='large')
 
 # Axes grid
 ax.grid(True, which = 'both', axis = 'both', alpha = 0.5)
 # which in ['major', 'minor', 'both']
 # axis in ['x', 'y', 'both']
+# set different alphas for major and minor ticks
 
 # Horizontal and vertical lines
 plt.axhline(y = 50, xmin = 0, xmax = 0.9, linestyle = ':', linewidth = 5)
@@ -85,10 +91,8 @@ cmap_reverse = 'rainbow_r'
 # Colormaps: https://matplotlib.org/stable/users/explain/colors/colormaps.html
 
 # Sample N colors from colorscale
-for i in range(len(data)): # or use numpy.linscale()
-  color_stops.append(i / len(data))
-colors = cm.tab20(color_stops)
-
+color_stops = np.linspace(0, 1, num_colors + 1)
+colors = cm.brg(color_stops)
 
 ### Legend ###
 
