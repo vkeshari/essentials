@@ -82,17 +82,18 @@ plt.text(x = 50, y = 1000, s = str(date), rotation = 45, \
 from matplotlib import cm
 
 # Assign a named color
-mycolor = 'lightgrey'
+mycolor = 'darkgrey'
 # Named colors: https://matplotlib.org/stable/gallery/color/named_colors.html
 
 # Assign a colormap
-cmap = 'rainbow'
-cmap_reverse = 'rainbow_r'
+cmap = 'turbo'
+cmap_reverse = 'jet_r'
 # Colormaps: https://matplotlib.org/stable/users/explain/colors/colormaps.html
 
 # Sample N colors from colorscale
 color_stops = np.linspace(0, 1, num_colors + 1)
 colors = cm.brg(color_stops)
+
 
 ### Legend ###
 
@@ -137,7 +138,7 @@ plt.scatter(xs, ys, s = sizes, c = cols, \
 
 # Bar
 ax.bar(xs, ys, width = 10, align = 'edge', \ # align in ['center', 'edge']
-        color = color, alpha = 0.7)
+        color = color, alpha = 0.7, linewidth = 1, edgecolor = 'darkgrey')
 
 # Horizontal Bars
 ax.barh(y = y_coords, width = vals, align = 'center', \ # align in ['center', 'edge']
