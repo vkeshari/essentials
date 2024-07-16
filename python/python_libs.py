@@ -24,6 +24,9 @@ dt = datetime.strptime('20240101', '%Y%m%d')
 dt.strftime('%Y%m%d')
 # Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
+# Date to datetime
+dt = datetime.combine(d, datetime.min.time())
+
 
 ### os ###
 from os import listdir

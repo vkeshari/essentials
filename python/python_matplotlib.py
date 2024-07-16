@@ -43,10 +43,10 @@ with writer.saving(fig, filename, dpi = 100):
 ### Annotations ###
 
 # Title
-ax.set_title(title_text, fontsize ='xx-large', fontweight='bold')
+ax.set_title(title_text, fontsize = 'xx-large', fontweight='bold')
 
 # Axes label
-ax.set_ylabel(ylabel, fontsize ='x-large', style = 'italic')
+ax.set_ylabel(ylabel, fontsize = 'x-large', style = 'italic')
 
 # Axes limits and labels
 plt.yscale('log') # or default 'linear', do this before setting ticks and labels
@@ -113,7 +113,7 @@ cbar = plt.colorbar(line1,
                       ticks = [1, 2, 5, 10] \
                     )
 cbar.ax.tick_params(labelsize = 'medium')
-cbar.set_label('No. of players', 'large')
+cbar.set_label('No. of players', size = 'large')
 
 
 ### Graph Types ###
