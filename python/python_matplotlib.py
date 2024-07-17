@@ -112,8 +112,10 @@ cbar = plt.colorbar(line1,
                       format = "%d", pad = 0.01, \
                       ticks = [1, 2, 5, 10] \
                     )
-cbar.ax.tick_params(labelsize = 'medium')
 cbar.set_label('No. of players', size = 'large')
+
+cbar.ax.tick_params(labelsize = 'medium')
+cbar.ax.set_yticklabels([str(t) for t in ticks], fontsize = 'medium')
 
 
 ### Graph Types ###
@@ -157,6 +159,14 @@ ax.hist(data, bins = 10, \
 ax.hist(data, bins = [0, 20, 80, 100], \ # --> bins are [0, 20), [20, 80), [80, 100]
           label = label, color = 'red', alpha = 0.4)
 
+# Heatmap
+plt.imshow(xy, origin = 'lower', aspect = 'auto', \ # aspect in ['equal', 'auto']
+              extent = (xmin, xmax, ymin, ymax))
+
+# Contours
+plt.contour(xy, levels = range(0, 10), colors = 'white', \ # or list of colors
+              alpha = 0.5, antialiased = True)
+
 
 ### Image ###
 import matplotlib.image as mpimg
@@ -168,5 +178,5 @@ img = mpimg.imread(filename)
 fig_extents = [x_min, x_max, y_min, y_max]
 fig_aratio = 1.5 # aspect ratio scales pixels and is y / x, or in ['equal', 'auto']
 ax.imshow(img, extent = fig_extents, aspect = fig_aratio, alpha = 1.0, \
-            cmap='viridis', vmin = 0, vmax = 255, \ # [vmin, vmax] is range of data to plot
+            cmap = 'viridis', vmin = 0, vmax = 255, \ # [vmin, vmax] is range of data to plot
           )

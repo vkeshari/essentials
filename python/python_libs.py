@@ -25,7 +25,7 @@ dt.strftime('%Y%m%d')
 # Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
 # Date to datetime
-dt = datetime.combine(d, datetime.min.time())
+dt = datetime.combine(d, datetime.min.time()) # combines date and time
 
 
 ### os ###
