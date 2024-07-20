@@ -4,14 +4,17 @@
 
 **Bold**
 
-*Italic*
+_Italic_
+
+~~Strike~~through
+
+H<sub>2</sub>O
+
+e<sup>-x</sup>
 
 ### Extended
 ```
 ==Highlight==
-~~Strikethrough~~
-Sub~script~
-Super^script^
 ```
 ## Filenames, commnds, numbers
 
@@ -20,11 +23,12 @@ It has `100` lines of code, the most anyone has ever written.
 
 This is a new line.
 
-## Notes
+## Quotes
 
-> :pencil2: **Note:** There is no charge for awesomeness
-
-> :star: **Best Practice:** Don't forget to bring a towel
+> There is no charge for awesomeness
+>
+> .. or attractiveness
+> > There is no secret ingredient
 
 ## Lists
 
@@ -35,10 +39,24 @@ This is a new line.
   + 3
 
 1. One
-2. Two
-3. Three
+   + Two `(located directly below first character)`
+     1. Three `(ordered nested in unordered)`
+   - Another Two
+1. Real Two
 
 Always leave a blank line after a list
+
+## Alerts
+> [!NOTE]
+> Take note of notes..
+>
+> .. or be noted.
+
+> [!TIP]
+> Choose tip amount:
+> + `10%`
+> + `20%`
+> + `OMG TAKE ALL MY MONEY BECAUSE YOU PRESSED A FEW BUTTONS ON A SCREEN`
 
 ## Code
 
@@ -47,11 +65,15 @@ Use this one weird trick to speed up your computer `100x`
 $ sudo rm -Rf /home
 ```
 
-> :warning: **Warning:** This is a lie. Please **don't** run the command above.
+> [!IMPORTANT]
+> This is a lie. Please don't run the command above.
+
+> [!WARNING]
+> For real. **DO NOT** run that command, not even out of curiosity.
 
 ---
 
-Reading between the lines
+Read between the lines
 
 ---
 
@@ -65,10 +87,11 @@ xs, ys = zip(*d.items())
 plt.plot(xs, ys, linewidth = 2, alpha = 0.5)
 ```
 
-> :no_entry_sign: **Deprecated:** This code has now been deprecated. Use package `drawlinefromx1y10tox2y20`.
-> 
->> :no_entry_sign: **Deprecated:** Package `drawlinefromx1y10tox2y20` is also deprecated.
->
+> [!CAUTION]
+> **Deprecated:** This code has now been deprecated. Use package `drawlinefromx1y10tox2y20`.
+
+> [!CAUTION]
+> **Deprecated:** Package `drawlinefromx1y10tox2y20` is also deprecated now.
 
 ## Links
 
@@ -78,12 +101,12 @@ plt.plot(xs, ys, linewidth = 2, alpha = 0.5)
 
 `Go to [Extended](#heading_ref) heading`
 
-## Extended: Definitions
-```
-Indo-gangetic plain
-: Vast, fertile, ==densely populated== river basin.
-: Most polluted place on Earth[^poullution].
-: Birthplace of civilization
+## References
 
-[^pollution](https://www.iqair.com/au/india/delhi): New Delhi air pollution
-```
+Indo-gangetic plain
++ Vast, fertile, densely populated river basin.
++ Most polluted place on Earth[^1].
++ Birthplace of civilization<sup>\[[citation needed](https://wikipedia.com)\]</sup>
+
+[^1]: (https://www.iqair.com/au/india/delhi): New Delhi air pollution
+
