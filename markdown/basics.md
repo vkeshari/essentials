@@ -6,16 +6,17 @@
 
 _Italic_
 
-~~Strike~~through
+Strike~~through~~
 
 H<sub>2</sub>O
 
 e<sup>-x</sup>
 
 ### Extended
-```
-==Highlight==
-```
+> (No GitHub support)
+
+`==Highlight==`
+
 ## Filenames, commnds, numbers
 
 Contents can be found at `filename.py`.
@@ -96,6 +97,7 @@ plt.plot(xs, ys, linewidth = 2, alpha = 0.5)
 ## Links
 
 ### Extended `{#heading_ref}`
+> (No GitHub support)
 
 [Dubious source of information](https://google.com)
 
