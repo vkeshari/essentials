@@ -4,9 +4,11 @@
 
 ### Local Image
 
-[[/path/to/image | Fake image]]
+`[[/path/to/image | Fake image]]`
 
 > Note the leading `/` in image path
+
+> Only works on wikis
 
 ### HTML Style Image
 
@@ -24,8 +26,7 @@
       <img src = 'https://images.freeimages.com/vme/images/1/0/107605/peace_sign_clip_art_preview.jpg'>
     </details>
   * <details><summary> View Bulleted Inner 2 </summary><br>
-      <img src = 'https://images.freeimages.com/vme/images/1/0/107605/
-      peace_sign_clip_art_preview.jpg'>
+      <img src = 'https://images.freeimages.com/vme/images/1/0/107605/peace_sign_clip_art_preview.jpg'>
     </details>
 </details>
 
