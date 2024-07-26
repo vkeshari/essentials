@@ -104,6 +104,20 @@ np.random.normal(loc = 5, scale = 1, size = 10) # loc is mean, scale is std
 # Distributions: https://numpy.org/doc/stable/reference/random/generator.html#distributions
 
 
+### scipy.stats ###
+from scipy import stats
+
+stats.describe(data) # returns (nobs, minmax, mean, variance, skewness, kurtosis)
+
+stats.skew(data)
+stats.kurtosis(data)
+
+# Percentiles and reverse-percentiles in data
+stats.percentileofscore(data, 0.5)
+stats.scoreatpercentile(data, 50)
+# Both methods will average / interpolate.
+
+
 ### scipy.interpolate ###
 from scipy import interpolate
 
