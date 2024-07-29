@@ -136,6 +136,25 @@ for l in yield_lines('my_data.csv'):
   pass
 
 
+### repr ###
+
+# Create a custom sort condition
+def get_sort_key(dict_keys):
+  key = '('
+  for k in dict_keys:
+    key += "item[1][" + repr(k) + "],"
+  key += ')'
+  return key
+
+players = {'sachin': {'runs': 18000, 'avg': 45}, 'virat': {'runs': 12000, 'avg': 55}}
+first_player_stats = players[list(players.keys())[0]]
+player_stat_keys = list(first_player_stats.keys())
+sort_key = get_sort_key(player_stat_keys) # returns """(item[1]['runs'], item[1]['avg'],)"""
+
+# Sorts by 'runs', then by 'avg'
+sorted_players = sorted(players, key = lambda item: eval(sort_key), reverse = True)
+
+
 ### math ###
 import math
 
