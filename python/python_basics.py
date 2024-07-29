@@ -76,6 +76,20 @@ dict(sorted(d.items() , key = lambda i: i[1], reverse = True))
 # Sort by multiple keys
 dict(sorted(d.items() , key = lambda i: (i[1]['rank'], -i[1]['score']))) # Use -neg for reverse
 
+# Create a custom sort key on nested items of arbitrary length
+def get_sort_key(keys):
+  sort_key = '('
+  for k in keys:
+    sort_key += "i[1][" + repr(k) + "],"
+  sort_key += ')'
+  return sort_key
+
+ranges = {'range1': (1, 5), 'range2': (2, 4), 'range3': (2, 3)}
+ranges_val_keys = [1, 0] # indices of nested tuples
+sort_key = get_sort_key(ranges_val_keys) # --> """(i[1][1], i[1][0],)"""
+
+sorted_ranges = sorted(ranges, key = lambda i: eval(sort_key), reverse = True)
+
 
 ### zip ###
 
@@ -134,25 +148,6 @@ def yields_lines(filename):
 
 for l in yield_lines('my_data.csv'):
   pass
-
-
-### repr ###
-
-# Create a custom sort condition
-def get_sort_key(dict_keys):
-  key = '('
-  for k in dict_keys:
-    key += "item[1][" + repr(k) + "],"
-  key += ')'
-  return key
-
-players = {'sachin': {'runs': 18000, 'avg': 45}, 'virat': {'runs': 12000, 'avg': 55}}
-first_player_stats = players[list(players.keys())[0]]
-player_stat_keys = list(first_player_stats.keys())
-sort_key = get_sort_key(player_stat_keys) # returns """(item[1]['runs'], item[1]['avg'],)"""
-
-# Sorts by 'runs', then by 'avg'
-sorted_players = sorted(players, key = lambda item: eval(sort_key), reverse = True)
 
 
 ### math ###
