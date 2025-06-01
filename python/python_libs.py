@@ -61,6 +61,40 @@ with output_file.open('w') as f:
     f.write(d)
 
 
+### concurrent ###
+from concurrent.futures import ThreadPoolExecutor, as_completed, wait
+
+def process_data(a, b):
+  return a + b
+
+def finished(fut):
+  print("Done!")
+
+# Single future
+with ThreadPoolExecutor() as executor:
+  fut = executor.submit(process_data, 1, 2)
+  fut.add_done_callback(finished) # callback won't bother with exceptions if result is not read
+
+  fut.cancel() # returns attempted cancellation result
+  fut.done() # True if completed or cancelled
+
+  res = fut.result(timeout = 3) # optional timeout in seconds, default None
+
+  fut.exception(timeout = 3) # returns None if no exception
+
+# Multiple futures
+with ThreadPoolExecutor(max_workers = 5) as executor: # max_workers NUM_CPU * 5 by default
+  futs = [executor.submit(process_data, i, 1) for i in range(10)]
+
+  # Get results as they are completed (not in order, already completed first)
+  results = [f.result() for f in as_completed(futs, timeout = 3)]
+
+  # Wait for all tasks to complete first
+  # return_when in ['FIRST_COMPLETED', 'FIRST_EXCEPTION', 'ALL_COMPLETED'], default ALL_COMPLETED
+  wait(futs, timeout = 3, return_when = 'ALL_COMPLETED')
+  results = [f.result() for f in futs]
+
+
 ### urllib ###
 from urllib import request
 
