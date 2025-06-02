@@ -158,7 +158,7 @@ math.nan
 math.e
 math.pi
 
-math.sqrt(100) --> 10
-math.log(100, 10) --> 2
-math.pow(3, 2) --> 9
-math.exp(2) --> math.e ^ 2
+math.sqrt(100) # --> 10
+math.log(100, 10) # --> 2
+math.pow(3, 2) # --> 9
+math.exp(2) # --> math.e ^ 2
