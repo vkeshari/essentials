@@ -64,6 +64,10 @@ np.linspace(min_val, max_val, bins + 1)
 
 ### numpy matrices ###
 
+# Transpose a matrix
+m = np.array([(1,2,3),(4,5,6)]) # 2x3
+np.transpose(m) # --> [(1,4),(2,5),(3,6)]
+
 # Reshape a matrix
 m = np.array([(1,2,3),(4,5,6)]) # 2x3
 m.reshape(-1, 1) # --> 6x1

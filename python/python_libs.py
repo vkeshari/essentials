@@ -135,6 +135,8 @@ text = page.read().decode('utf-8')
 
 
 ### pickle ###
+import pickle
+
 with open(filename, 'wb+') as f:
   pickle.dump(data, f)
 
@@ -143,6 +145,8 @@ with open(filename, 'rb') as f:
 
 
 ### json ###
+import json
+
 class ClassSerializer(json.JSONEncoder):
   def default(self, o):
     if type(o).__name__ == 'ContainerA':

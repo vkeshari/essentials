@@ -11,10 +11,10 @@ resolution = tuple([19.2, 10.8]) # 1920 x 1080
 fig, ax = plt.subplots(figsize = resolution)
 
 # Multiple plots
-fig, axs = plt.subplots(nrows = 2, ncols = 3, \
-                            sharex = True, sharey = False, \ # Share subplot properties
-                            width_ratios = [1, 2, 3], \ # Relative subplot dimensions
-                            height_ratios = [2, 3], \
+fig, axs = plt.subplots(nrows = 2, ncols = 3,
+                            sharex = True, sharey = False, # Share subplot properties
+                            width_ratios = [1, 2, 3], # Relative subplot dimensions
+                            height_ratios = [2, 3],
                           )
 # axs === ((ax11, ax12, ax13), (ax21, ax22, ax23))
 
@@ -66,16 +66,22 @@ ax.grid(True, which = 'both', axis = 'both', alpha = 0.5)
 # axis in ['x', 'y', 'both']
 # set different alphas for major and minor ticks
 
+# Text
+plt.text(x = 50, y = 1000, s = str(date), rotation = 45,
+              alpha = 0.8, fontsize = 'medium',
+              horizontalalignment = 'left', # ['left', 'right', 'center']
+              verticalalignment = 'top', # ['top', 'bottom', 'center']
+            )
+
 # Horizontal and vertical lines
 plt.axhline(y = 50, xmin = 0, xmax = 0.9, linestyle = ':', linewidth = 5)
 plt.axvline(x = 1000, ymin = 0.1, color = 'grey', alpha = 0.5, linestyle = '--')
 
-# Text
-plt.text(x = 50, y = 1000, s = str(date), rotation = 45, \
-              alpha = 0.8, fontsize = 'medium', \
-              horizontalalignment = 'left', \ # ['left', 'right', 'center']
-              verticalalignment = 'top', \ # ['top', 'bottom', 'center']
-            )
+# Shapes
+from matplotlib.patches import Rectangle
+
+ax.add_patch(Rectangle((x0, y0), height = 1, width = 1, edgecolor = 'red', facecolor = 'green',
+                          linewidth = 2, alpha = 1.0, fill = True))
 
 
 ### Colors ###
@@ -108,9 +114,9 @@ ax.legend(handles = [line1, line2])
 
 # Colorbar with labels
 cbar = plt.colorbar(line1,
-                      shrink = 0.75, aspect = 50, \ # aspect is y / x
-                      format = "%d", pad = 0.01, \
-                      ticks = [1, 2, 5, 10] \
+                      shrink = 0.75, aspect = 50, # aspect is y / x
+                      format = "%d", pad = 0.01,
+                      ticks = [1, 2, 5, 10],
                     )
 cbar.set_label('No. of players', size = 'large')
 
@@ -122,49 +128,52 @@ cbar.ax.set_yticklabels([str(t) for t in ticks], fontsize = 'medium')
 
 # Line Chart
 plt.plot(xs, ys, \
-            linestyle = '-', linewidth = 5, antialiased = True, \
-            alpha = 0.5, color = 'darkgrey', \
+            linestyle = '-', linewidth = 5, antialiased = True,
+            alpha = 0.5, color = 'darkgrey',
             )
 # linestyle in ['', '-', '--', ':', '-.']
 
 plt.plot(xs, ys, \
-            marker = "o", markersize = 5, \
-            alpha = 0.5, markeredgecolor = 'orangered', \
+            marker = "o", markersize = 5,
+            alpha = 0.5, markeredgecolor = 'orangered',
             )
 # Markers: https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers
 
 # Scatterplot
-plt.scatter(xs, ys, s = sizes, c = cols, \
-                marker = None, alpha = 0.5, \
+plt.scatter(xs, ys, s = sizes, c = cols,
+                marker = None, alpha = 0.5,
               )
 
 # Bar
-ax.bar(xs, ys, width = 10, align = 'edge', \ # align in ['center', 'edge']
+ax.bar(xs, ys, width = 10, align = 'edge', # align in ['center', 'edge']
         color = color, alpha = 0.7, linewidth = 1, edgecolor = 'darkgrey')
 
 # Horizontal Bars
-ax.barh(y = y_coords, width = vals, align = 'center', \ # align in ['center', 'edge']
-          height = 0.9, left = start_vals, \
-          color = cols, alpha = 0.6, \
+ax.barh(y = y_coords, width = vals, align = 'center', # align in ['center', 'edge']
+          height = 0.9, left = start_vals,
+          color = cols, alpha = 0.6,
         )
 
 # Histogram
 ax.hist(data, bins = 10, \
-          cumulative = False, range = (0, 100), \ # only data in range is plotted
-          align = 'mid', \ # align in ['left', 'right', 'mid']
-          orientation = 'vertical', \ # orientation in ['horizontal', 'vertical']
+          cumulative = False, range = (0, 100), # only data in range is plotted
+          align = 'mid', # align in ['left', 'right', 'mid']
+          orientation = 'vertical', # orientation in ['horizontal', 'vertical']
           label = label, color = 'blue', alpha = 0.6)
 
 # Histogram with unequal bins
-ax.hist(data, bins = [0, 20, 80, 100], \ # --> bins are [0, 20), [20, 80), [80, 100]
+ax.hist(data, bins = [0, 20, 80, 100], # --> bins are [0, 20), [20, 80), [80, 100]
           label = label, color = 'red', alpha = 0.4)
 
 # Heatmap
-plt.imshow(xy, origin = 'lower', aspect = 'auto', \ # aspect in ['equal', 'auto']
+# By default, origin is 'upper' (like scan line printing an image)
+# aspect can be a float (ratio of the scale of axes)
+#   e.g. if x-axis is in [0, 1] and y-axis is in [0, 10], aspect should be 0.1 for square image
+plt.imshow(xy, origin = 'lower', aspect = 'auto', # aspect in ['equal', 'auto'] or float
               extent = (xmin, xmax, ymin, ymax))
 
 # Contours
-plt.contour(xy, levels = range(0, 10), colors = 'white', \ # or list of colors
+plt.contour(xy, levels = range(0, 10), colors = 'white', # or list of colors
               alpha = 0.5, antialiased = True)
 
 
@@ -177,6 +186,6 @@ img = mpimg.imread(filename)
 # Show image
 fig_extents = [x_min, x_max, y_min, y_max]
 fig_aratio = 1.5 # aspect ratio scales pixels and is y / x, or in ['equal', 'auto']
-ax.imshow(img, extent = fig_extents, aspect = fig_aratio, alpha = 1.0, \
-            cmap = 'viridis', vmin = 0, vmax = 255, \ # [vmin, vmax] is range of data to plot
+ax.imshow(img, extent = fig_extents, aspect = fig_aratio, alpha = 1.0,
+            cmap = 'viridis', vmin = 0, vmax = 255, # [vmin, vmax] is range of data to plot
           )
