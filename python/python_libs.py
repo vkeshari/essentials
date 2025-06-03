@@ -15,17 +15,37 @@ dt.day # hour, minute, second
 
 td = timedelta(days = 1) # weeks, days, hours, minutes, seconds, ...
 td.days
+td.seconds
+td.microseconds
+
+td.total_seconds()
 
 # datetime to/from string
 d.isoformat()
 dt.isoformat()
 
 dt = datetime.strptime('20240101', '%Y%m%d')
-dt.strftime('%Y%m%d')
+dt.strftime('%Y%m%d_%H%M%S') # --> 20240101_095555
 # Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
 # Date to datetime
 dt = datetime.combine(d, datetime.min.time()) # combines date and time
+
+# Timezones
+from dateutil import tz
+
+# Include timezone in datetime (by default, timezone is included but not timezone name)
+dt = datetime.now(tz.UTC)
+dt.tzname() # --> 'UTC'
+
+dtl = dt.astimezone(tz.tzlocal())
+dtl.tzname() # --> 'IST'
+
+
+### time ###
+from time import sleep
+
+sleep(5) # in seconds
 
 
 ### os ###
@@ -62,7 +82,7 @@ with output_file.open('w') as f:
 
 
 ### concurrent ###
-from concurrent.futures import ThreadPoolExecutor, as_completed, wait
+from concurrent.futures import ThreadPoolExecutor, as_completed, wait # also ProcessPoolExecutor
 
 def process_data(a, b):
   return a + b
@@ -89,7 +109,7 @@ with ThreadPoolExecutor(max_workers = 5) as executor: # max_workers NUM_CPU * 5 
   # Get results as they are completed (not in order, already completed first)
   results = [f.result() for f in as_completed(futs, timeout = 3)]
 
-  # Wait for all tasks to complete first
+  # Wait for all/any tasks to finish first
   # return_when in ['FIRST_COMPLETED', 'FIRST_EXCEPTION', 'ALL_COMPLETED'], default ALL_COMPLETED
   wait(futs, timeout = 3, return_when = 'ALL_COMPLETED')
   results = [f.result() for f in futs]
@@ -103,9 +123,15 @@ text = page.read().decode('utf-8')
 
 
 ### regexp ###
+# TODO
+
+
+### csv ###
+# TODO
 
 
 ### xml ###
+# TODO
 
 
 ### pickle ###
