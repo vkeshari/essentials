@@ -16,33 +16,42 @@ np.std(data)
 np.percentile(date, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
 np.percentile(date, 95) # continuous values (method = 'linear')
 
+
+### numpy histograms ###
+
+# 3 bins with borders at [1, 2), [2, 3) and [3, 4]
+bins = [1, 2, 3, 4]
+nums = [1, 2, 3, 4, 5]
+reps = [1, 2, 1, 2, 2]
+
+# Count values in bins
+np.histogram(nums, bins = bins) # --> [[1, 1, 2], [1, 2, 3, 4]]
+
+np.histogram(reps, bins = bins) # --> [[2, 3, 0], [1, 2, 3, 4]]
+np.histogram(reps, bins = bins, density = True) # --> [[0.4, 0.6, 0.0], [1, 2, 3, 4]]
+
+bin_counts = np.histogram(nums, bins = bins)[0]
+
 # Histogram percentiles (returns discrete values)
 bins_shifted = [b + bin_width / 2 for b in bins]
 np.percentile(a = bins_shifted, q = 95, weights = bin_counts, method = 'inverted_cdf')
 
-
-### numpy histograms ###
-
-# Count values in bins
-np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3]) # --> [[2, 3], [1, 2, 3]]
-np.histogram([1, 2, 1, 2, 2], bins = [1, 2, 3], density = True) # --> [[0.4, 0.6], [1, 2, 3]]
-
-# Which bin does each value go into
-np.digitize(x, bins, right) # only works for numbers
-np.searchsorted(a, v, side) # side in ['left', 'right']
+# Which bin does each value go into (examples below)
+np.digitize(nums, bins, right = False) # Only works for numbers
+np.searchsorted(bins, nums, side = 'left') # side in ['left', 'right']
 
 values = [1, 2, 3, 4, 5, 6]
 bins = [3, 5]
 
 # Match [lower, upper)
-bin_mapping = np.digitize(x = values, bins = bins, right = False)   # --> [0, 0, 1, 1, 2, 2]
-bin_mapping = np.searchsorted(a = bins, v = values, side = 'right') # --> [0, 0, 1, 1, 2, 2]
+bin_mapping = np.digitize(x = values, bins = bins, right = False)   # --> [0, 0, 1, 1, 2, 2] *
+bin_mapping = np.searchsorted(a = bins, v = values, side = 'right') # --> [0, 0, 1, 1, 2, 2] *
 
 # Match (lower, upper]
-bin_mapping = np.digitize(x = values, bins = bins, right = True)   # --> [0, 0, 0, 1, 1, 2]
-bin_mapping = np.searchsorted(a = bins, v = values, side = 'left') # --> [0, 0, 0, 1, 1, 2]
+bin_mapping = np.digitize(x = values, bins = bins, right = True)   # --> [0, 0, 0, 1, 1, 2] *
+bin_mapping = np.searchsorted(a = bins, v = values, side = 'left') # --> [0, 0, 0, 1, 1, 2] *
 
-# Subtract 1 for actual bin indices
+# * --> Subtract 1 for actual bin indices
 bin_mapping = [b - 1 for b in bin_mapping]
 
 
@@ -127,7 +136,7 @@ from scipy import interpolate
 
 # Spline interpolation
 tck = interpolate.splrep(xs, ys, k = 3) # 3: cubic spline
-y_new = interpolate.splev(x_new, tck)
+ys_new = interpolate.splev(xs_new, tck)
 
 # Monotonic spline interpolation (cubic hermite)
 ys_new = interpolate.pchip_interpolate(xs, ys, xs_new)

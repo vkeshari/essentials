@@ -16,7 +16,7 @@ assert not {'key1', 'key2'} ^ d.keys() # Contains only these keys
 
 try:
   with open('not_a_file') as f:
-    return f.readlines()
+    l = f.readlines()
 except:
   pass
 
@@ -26,7 +26,7 @@ except:
 # Handle specific exception
 try:
   n = 100 / 0
-except ZeroDivisionError zde:
+except ZeroDivisionError as zde:
   print(zde)
   n = 0
 except (RuntimeError, TypeError):

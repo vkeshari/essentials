@@ -9,6 +9,24 @@ min([1, 2, 3])
 round(1.2)
 
 
+### objects and equality ###
+a = "hi"
+b = "hi"
+a == b # --> True
+a is b # --> True
+
+a = [1, 2, 3]
+b = [1, 2, 3]
+a == b # --> True
+a is b # --> False
+
+b = a
+a is b # --> True
+
+a[1] = 5
+b # --> [1, 5, 3]
+
+
 ### str ###
 
 s = 'Hello'
@@ -123,8 +141,12 @@ m = list( map(lambda i: i + 1, [-1, 0, 1]) ) # --> [0, 1, 2]
 
 # reduce
 from functools import reduce
+
 r = reduce (lambda i, j: i + j, [1, 2, 3])    # --> 6
 r = reduce (lambda i, j: i + j, [1, 2, 3], 4) # --> 10
+
+# i is the input, j is the next element in sequence
+r = reduce (lambda i, j: i + ' ' + 2 * j, ["i", "am", "cat"], "hi") # --> "hi ii amam catcat"
 
 
 ### file ###
