@@ -170,7 +170,8 @@ ax.hist(data, bins = [0, 20, 80, 100], # --> bins are [0, 20), [20, 80), [80, 10
 # aspect can be a float (ratio of the scale of axes)
 #   e.g. if x-axis is in [0, 1] and y-axis is in [0, 10], aspect should be 0.1 for square image
 plt.imshow(xy, origin = 'lower', aspect = 'auto', # aspect in ['equal', 'auto'] or float
-              extent = (xmin, xmax, ymin, ymax))
+              extent = (xmin, xmax, ymin, ymax),
+              cmap = 'viridis', vmin = 0, vmax = 1) # [vmin, vmax] is range of data to plot
 
 # Contours
 plt.contour(xy, levels = range(0, 10), colors = 'white', # or list of colors
@@ -186,6 +187,4 @@ img = mpimg.imread(filename)
 # Show image
 fig_extents = [x_min, x_max, y_min, y_max]
 fig_aratio = 1.5 # aspect ratio scales pixels and is y / x, or in ['equal', 'auto']
-ax.imshow(img, extent = fig_extents, aspect = fig_aratio, alpha = 1.0,
-            cmap = 'viridis', vmin = 0, vmax = 255, # [vmin, vmax] is range of data to plot
-          )
+ax.imshow(img, extent = fig_extents, aspect = fig_aratio, alpha = 1.0)

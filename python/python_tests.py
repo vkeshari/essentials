@@ -6,6 +6,7 @@ sys.exit("Reference material. Do not execute")
 
 assert is_data_provided
 assert age > 0, "Age must be positive"
+assert 0 <= rating <= 100, "Rating must be between 0 and 100"
 
 # Check dict contains expected keys
 assert not {'key1', 'key2'} - d.keys() # Contains at least these keys
@@ -18,7 +19,8 @@ try:
   with open('not_a_file') as f:
     l = f.readlines()
 except:
-  pass
+  print ("Cannot read file")
+  l = []
 
 # Exception types
 # https://docs.python.org/3/library/exceptions.html#concrete-exceptions
