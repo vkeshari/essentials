@@ -16,6 +16,20 @@ np.std(data)
 np.percentile(date, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
 np.percentile(date, 95) # continuous values (method = 'linear')
 
+# Checks
+a = np.array([[1, 2, 3], [4, 5, 6]])
+a.shape # --> (2, 3)
+a.size # --> 6
+
+# Indices of sorted elements
+a = [1, 3, 4, 2, 5]
+np.argsort(a) # --> [0, 3, 1, 2, 4]
+np.argsort(a)[ : : -1] # --> [4, 2, 1, 3, 0] (reverse sort)
+
+# Array manipulation
+np.repeat(1, 3) # --> [1, 1, 1] -- same as [1] * 5 for lists
+np.append([1, 2], [3, 4]) # --> [1, 2, 3, 4] -- same as [1, 2] + [3, 4] for lists
+np.vstack(([1, 2], [3, 4])) # --> [[1, 2], [3, 4]]  -- same as [[1, 2]].append([3, 4])
 
 ### numpy histograms ###
 
@@ -143,7 +157,7 @@ ys_new = interpolate.pchip_interpolate(xs, ys, xs_new)
 
 
 ### scipy.optimize ###
-from scipy.optimize import curve_fit
+from scipy.optimize import curve_fit, linear_sum_assignment
 
 # Fit an exponential curve
 def exp_func(x, a, b, c):
@@ -151,6 +165,10 @@ def exp_func(x, a, b, c):
 
 (a, b, c), _ = curve_fit(self.exp_func, xs, ys)
 ys_new = [exp_func(x, a, b, c) for x in xs_new]
+
+# Assignment matching
+cost_matrix = [[0.1, 0.8], [0.5, 0.7]]
+(rows, cols) = linear_sum_assignment(cost_matrix, maximize = False) # --> [0, 1] and [1, 0]
 
 
 ### sklearn : 1-d clustering ###

@@ -27,6 +27,17 @@ a[1] = 5
 b # --> [1, 5, 3]
 
 
+### array slices ###
+a = [1, 2, 3, 4, 5]
+
+# third slice argument is step size
+a[1 : 5 : 2] # --> [2, 4]
+a[4 : 1 : -1] # --> [5, 4, 3]
+
+# reverse an array
+a[ : : -1] # --> [5, 4, 3, 2, 1]
+
+
 ### str ###
 
 s = 'Hello'
@@ -56,7 +67,8 @@ for i, v in enumerate(l):
   pass
 
 # Create list from generators
-list(range(0, 10, 2))
+l = list(range(0, 10, 2))
+l = [*range(0, 10, 2)]
 
 
 ### tuple ###
