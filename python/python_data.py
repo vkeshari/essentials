@@ -11,10 +11,12 @@ np.ones((5, 2))
 np.array(list(d.values())) # Must convert dict values to list first
 
 # Statistics
+data = [1, 2, 3, 4, 5]
+
 np.average(data)
 np.std(data)
-np.percentile(date, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
-np.percentile(date, 95) # continuous values (method = 'linear')
+np.percentile(data, 95, method = 'nearest') # discrete values, also ['lower', 'higher']
+np.percentile(data, 95) # continuous values (method = 'linear')
 
 # Checks
 a = np.array([[1, 2, 3], [4, 5, 6]])
@@ -26,10 +28,52 @@ a = [1, 3, 4, 2, 5]
 np.argsort(a) # --> [0, 3, 1, 2, 4]
 np.argsort(a)[ : : -1] # --> [4, 2, 1, 3, 0] (reverse sort)
 
-# Array manipulation
+### Array manipulation ###
+
+# Array with repeated elements
 np.repeat(1, 3) # --> [1, 1, 1] -- same as [1] * 5 for lists
-np.append([1, 2], [3, 4]) # --> [1, 2, 3, 4] -- same as [1, 2] + [3, 4] for lists
-np.vstack(([1, 2], [3, 4])) # --> [[1, 2], [3, 4]]  -- same as [[1, 2]].append([3, 4])
+
+# Join or extend arrays
+np.append([1, 2], [3, 4], axis = 0) # --> [1, 2, 3, 4] -- same as [1, 2] + [3, 4] for lists
+np.concatenate(([1, 2], [3, 4], (5, 6))) # --> [1, 2, 3, 4, 5, 6] (allows a tuple of arrays)
+
+
+### numpy matrices ###
+
+# Make a matrix from 1-d arrays
+matrix = np.vstack(([1, 2], [3, 4])) # --> [[1, 2], [3, 4]]  -- same as [[1, 2]].append([3, 4])
+
+# Make a 1-d array from a matrix
+matrix.flatten() # --> [1, 2, 3, 4]
+
+# Transpose a matrix
+m = np.array([(1,2,3),(4,5,6)]) # 2x3
+np.transpose(m) # --> [(1,4),(2,5),(3,6)]
+
+# Reshape a matrix
+m = np.array([(1,2,3),(4,5,6)]) # 2x3
+
+# -1 means ignore this dimension, reshape to fit the others
+m.reshape(-1, 1) # --> 6x1
+m.reshape(1, -1) # --> 1x6
+m.reshape(-1, 2) # --> 3x2
+
+
+### numpy float ranges ###
+
+# Floating point range by step
+np.arange(0, 2, 0.5) # --> [0.0, 0.5, 1.0, 1.5]
+np.arange(0.1, 1.5, 0.3) # --> [0.1, 0.4, 0.7, 1.0, 1.3]
+
+# Floating point range by bins
+#   arguments are min_val, max_val, stops -- max_val included, no. of bins is (stops - 1)
+np.linspace(0, 10, 6) # --> [0, 2, 4, 6, 8, 10]
+np.linspace((0, 0), (10, 20), 3) # --> [[0, 0], [5, 10], [10, 20]]
+
+# Split a range without rounding errors
+bins = round((max_val - min_val) / step)
+np.linspace(min_val, max_val, bins + 1)
+
 
 ### numpy histograms ###
 
@@ -67,35 +111,6 @@ bin_mapping = np.searchsorted(a = bins, v = values, side = 'left') # --> [0, 0, 
 
 # * --> Subtract 1 for actual bin indices
 bin_mapping = [b - 1 for b in bin_mapping]
-
-
-### numpy float ranges ###
-
-# Floating point range by step
-np.arange(0, 2, 0.5) # --> [0.0, 0.5, 1.0, 1.5]
-np.arange(0.1, 1.5, 0.3) # --> [0.1, 0.4, 0.7, 1.0, 1.3]
-
-# Floating point range by bins
-np.linspace(min_val, max_val, bins) # includes max_val
-np.linspace(0, 10, 6) # --> [0, 2, 4, 6, 8, 10]
-np.linspace((0, 0), (10, 20), 3) # --> [[0, 0], [5, 10], [10, 20]]
-
-# Split a range without rounding errors
-bins = round((max_val - min_val) / step)
-np.linspace(min_val, max_val, bins + 1)
-
-
-### numpy matrices ###
-
-# Transpose a matrix
-m = np.array([(1,2,3),(4,5,6)]) # 2x3
-np.transpose(m) # --> [(1,4),(2,5),(3,6)]
-
-# Reshape a matrix
-m = np.array([(1,2,3),(4,5,6)]) # 2x3
-m.reshape(-1, 1) # --> 6x1
-m.reshape(1, -1) # --> 1x6
-m.reshape(-1, 2) # --> 3x2
 
 
 ### numpy.random ###
@@ -181,10 +196,11 @@ kde = kd.fit(data.reshape(-1, 1))
 y_est = kde.score_samples(x_new.reshape(-1, 1))
 
 
-### sklearn : Reshape 1-d distribution ###
+### sklearn : Make data more gaussian-like ###
 from sklearn.preprocessing import power_transform
 
-power_transform(data.reshape(-1, 1)).reshape(1, -1).flatten()
+data = np.array([1, 2, 3, 4, 5]).reshape(-1, 1) # distribution(s) must be in columns
+power_transform(data).reshape(1, -1).flatten()
 
 
 ### fitter : Check which distribution fits data ###
