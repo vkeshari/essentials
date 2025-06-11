@@ -10,6 +10,9 @@ git merge # if changed files
 
 # Staging and unstaging
 git add <filename>
+git reset <filename> # undo add/modify/..
+git reset # undo all adds/..
+
 git rm <filename>
 git restore --staged <filename>
 
