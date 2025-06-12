@@ -13,18 +13,22 @@ d1 - d2 # --> timedelta
 dt = datetime.now()
 dt.day # hour, minute, second
 
+dt.date() # --> date
+
 td = timedelta(days = 1) # weeks, days, hours, minutes, seconds, ...
+td = -timedelta(days = 1)
+
 td.days
 td.seconds
 td.microseconds
-
 td.total_seconds()
 
 # datetime to/from string
 d.isoformat()
 dt.isoformat()
 
-dt = datetime.strptime('20240101_193145', '%Y%m%d_%H%M%S')
+# custom string format for date and datetime
+dt = datetime.strptime('20240101_095555', '%Y%m%d_%H%M%S')
 dt.strftime('%Y-%m-%d %H:%M:%S %z') # --> 2024-01-01 09:55:55 +0530
 # Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
@@ -32,14 +36,22 @@ dt.strftime('%Y-%m-%d %H:%M:%S %z') # --> 2024-01-01 09:55:55 +0530
 dt = datetime.combine(d, datetime.min.time()) # combines date and time
 
 # Timezones
-from dateutil import tz
+from datetime import timezone
+
+# Custom timezones
+TZ_IST = timezone(timedelta(hours = 5, minutes = 30), name = 'IST')
+TZ_PDT = timezone(-timedelta(hours = 8), name = 'PDT')
 
 # Include timezone in datetime (by default, timezone is included but not timezone name)
-dt = datetime.now(tz.UTC)
-dt.tzname() # --> 'UTC'
+dt = datetime.now(TZ_IST)
+dt.tzname() # --> 'IST'
 
-dtl = dt.astimezone(tz.tzlocal())
-dtl.tzname() # --> 'IST'
+dt1 = dt.astimezone(TZ_PDT)
+
+# Use dateutil
+from dateutil import tz
+dt2 = datetime.now(tz.UTC)
+dt3 = datetime.now(tz.tzlocal())
 
 
 ### time ###
