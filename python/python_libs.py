@@ -24,8 +24,8 @@ td.total_seconds()
 d.isoformat()
 dt.isoformat()
 
-dt = datetime.strptime('20240101', '%Y%m%d')
-dt.strftime('%Y%m%d_%H%M%S') # --> 20240101_095555
+dt = datetime.strptime('20240101_193145', '%Y%m%d_%H%M%S')
+dt.strftime('%Y-%m-%d %H:%M:%S %z') # --> 2024-01-01 09:55:55 +0530
 # Format: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
 
 # Date to datetime
@@ -76,6 +76,7 @@ output_file = Path(filename)
 output_file.parent.mkdir(exist_ok = True, parents = True)
 
 # Write to a file
+data = [['hello'], ['bye']]
 with output_file.open('w') as f:
   for d in data:
     f.write(d)
@@ -118,6 +119,7 @@ with ThreadPoolExecutor(max_workers = 5) as executor: # max_workers NUM_CPU * 5 
 ### urllib ###
 from urllib import request
 
+url = "https://doesnotexist.com"
 page = request.urlopen(url)
 text = page.read().decode('utf-8')
 
@@ -131,7 +133,42 @@ text = page.read().decode('utf-8')
 
 
 ### xml ###
-# TODO
+from xml.etree import ElementTree as ET
+
+# Read and parse an XML file
+xml_file = 'my_data.xml'
+tree = ET.parse(xml_file)
+root = tree.getroot()
+
+for node in root:
+  node.tag
+  node.attrib # returns a dict of attributes
+  node.text
+  node.get('ATTR1') # read an attribute
+
+root.find('TAG1') # returns first child with tag TAG1
+
+for node in root.findall('TAG1'):
+  pass
+
+# Edit and write an XML file
+
+node = ET.Element('TAG2')
+child = ET.SubElement(node, 'TAG3')
+node.remove(child)
+
+# all written values and attributes must be text
+node.text = '100'
+node.set('ATTR1', 'attr_val')
+
+# Print a node
+ET.dump(node)
+
+# Write a tree
+tree.write('out_data.xml')
+
+new_tree = ET.ElementTree(root)
+new_tree.write('out_data.xml')
 
 
 ### pickle ###

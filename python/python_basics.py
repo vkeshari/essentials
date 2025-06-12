@@ -47,8 +47,9 @@ s.find('l') # --> 2
 'My name: %s, my age: %3d, my favorite number: %5.2f' \
         % ('Virat', 35, 5.555)
 
-'My name: {name}, my age: {age:3d}, my favorite number: {num:5.2f}. I am {name}.' \
+'My name: {name}, my age: {age:3d}, my favorite number: {num:5.2f}.\nI am {name:>10}.' \
         .format(name = 'Virat', age = 35, num = 5.555)
+# For string arguments, <N and >N mean N wide, left and right align respectively
 
 
 ### list ###
