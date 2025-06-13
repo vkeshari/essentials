@@ -141,7 +141,27 @@ text = page.read().decode('utf-8')
 
 
 ### csv ###
-# TODO
+from csv import DictReader, DictWriter
+
+# Read a CSV
+csv_data = []
+with open('in_file.csv', newline = '') as csv_file:
+  reader = DictReader(csv_file, fieldnames = ['date', 'count'], restval = 'NA', dialect = 'excel')
+  # fieldnames is optional and will ignore first row (read it as data)
+  # restval is optional and will be filled for missing values (if fieldnames is provided)
+  # dialect can be 'excel': \n for end-of-line and field names in quotes (e.g. "date")
+
+  for row in reader:
+    csv_data.append(row) # row is a dict of fields to values
+
+# Write a CSV
+fieldnames = ['date', 'count']
+with open('out_file.csv', 'w', newline = '') as csv_file:
+  writer = DictWriter(csv_file, fieldnames = fieldnames, restval = 'NA', dialect = 'excel')
+
+  writer.writeheader()
+  for row in csv_data:
+    writer.writerow(row)
 
 
 ### xml ###
