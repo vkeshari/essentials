@@ -6,7 +6,11 @@ sys.exit("Reference material. Do not execute.")
 from datetime import date, datetime, timedelta
 
 d = date.today()
+d = date.fromisoformat('2024-01-01')
 d.day # year, month, day
+
+d.weekday() # Monday is 0, Sunday is 6
+d.isoweekday() # Monday is 1, Sunday is 7
 
 d1 - d2 # --> timedelta
 
@@ -23,7 +27,7 @@ td.seconds
 td.microseconds
 td.total_seconds()
 
-# datetime to/from string
+# date and datetime to/from string
 d.isoformat()
 dt.isoformat()
 
@@ -48,7 +52,7 @@ dt.tzname() # --> 'IST'
 
 dt1 = dt.astimezone(TZ_PDT)
 
-# Use dateutil
+# dateutil for timezones
 from dateutil import tz
 dt2 = datetime.now(tz.UTC)
 dt3 = datetime.now(tz.tzlocal())
