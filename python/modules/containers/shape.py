@@ -4,8 +4,8 @@
 class Rectangle:
 
   # By convention, class members have a preceding _
-  #   This is only a convention. An object can change or override this, but not permanently.
-  #     (see r1 and r2 below)
+  # This is only a convention. An object can change or override this variable,
+  #   but only for itself, not for the base class (see r1 and r2 below).
   _type = "RECTANGLE"
 
   def __init__(self, side1, side2):
@@ -15,6 +15,9 @@ class Rectangle:
   
   def area(self):
     return self.side1 * self.side2
+  
+  def whats_my_type(self):
+    return self._type
   
   def __str__(self):
     return "{}\n\tSide1:\t{}\tSide2:\t{}\tArea:\t{}" \
@@ -31,7 +34,7 @@ def check_rectangle():
   isinstance(r, Rectangle) # --> True
 
   r1 = Rectangle(1, 2)
-  r1._type = "MUTANT RECTANGLE" # Objects can modify a class member (but only for themselves, see r2)
+  r1._type = "MUTANT RECTANGLE" # Objects can modify a class member (but only for themselves)
   print("r1 is a {}".format(r1))
 
   r2 = Rectangle(1, 2)
@@ -103,6 +106,10 @@ def check_square():
   s4 = s.from_area(1) # can call a @staticmethod with object name
   s4.area() # --> 1.0
   print("s4 is a {}".format(s4))
+
+  s5 = Square(1)
+  print("s5's type: {}".format(s5.whats_my_type())) # --> SQUARE
+  # call to parent's function uses child's value of _type
 
 
 if __name__ == "__main__":
