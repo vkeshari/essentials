@@ -2,8 +2,9 @@ import sys
 sys.exit("Reference material. Do not execute.")
 
 
-### datetime ###
+### datetime and dateutil ###
 from datetime import date, datetime, timedelta
+from dateutil import tz, relativedelta as rd
 
 d = date.today()
 d = date.fromisoformat('2024-01-01')
@@ -27,6 +28,12 @@ td.seconds
 td.microseconds
 td.total_seconds()
 
+# Relative date and time (handles day of month and leap year conflicts)
+d = date.today()
+d + rd.relativedelta(years = 1)
+d + rd.relativedelta(months = 1)
+d + rd.relativedelta(days = 1)
+
 # date and datetime to/from string
 d.isoformat()
 dt.isoformat()
@@ -43,19 +50,18 @@ dt = datetime.combine(d, datetime.min.time()) # combines date and time
 from datetime import timezone
 
 # Custom timezones
-TZ_IST = timezone(timedelta(hours = 5, minutes = 30), name = 'IST')
-TZ_PDT = timezone(-timedelta(hours = 8), name = 'PDT')
+TZ_IST = timezone(timedelta(hours = 5, minutes = 30), name = 'IST custom')
+TZ_PDT = timezone(-timedelta(hours = 7), name = 'PDT')
 
 # Include timezone in datetime (by default, timezone is included but not timezone name)
 dt = datetime.now(TZ_IST)
-dt.tzname() # --> 'IST'
+dt.tzname() # --> 'IST custom'
 
 dt1 = dt.astimezone(TZ_PDT)
 
-# dateutil for timezones
-from dateutil import tz
-dt2 = datetime.now(tz.UTC)
-dt3 = datetime.now(tz.tzlocal())
+# Timezones with dateutil
+dt = datetime.now(tz.UTC)
+dt = datetime.now(tz.tzlocal())
 
 
 ### time ###

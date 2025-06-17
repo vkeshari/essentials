@@ -1,6 +1,7 @@
 import sys
 sys.exit("Reference material. Do not execute.")
 
+from pathlib import Path
 
 ### Plot setup ###
 from matplotlib import pyplot as plt
@@ -18,11 +19,18 @@ fig, axs = plt.subplots(nrows = 2, ncols = 3,
                           )
 # axs === ((ax11, ax12, ax13), (ax21, ax22, ax23))
 
-fig.tight_layout()
 
-# Show or save
+# Show plot
+fig.tight_layout()
 plt.show()
+
+# Save plot
+filename = Path("graphs/out_graph.png")
+filename.parent.mkdir(exist_ok = True, parents = True)
+
+fig.tight_layout()
 fig.savefig(filename)
+plt.close()
 
 
 ### Animation ###
@@ -34,6 +42,8 @@ def draw_frame(frame):
   plt.draw()
 
 writer = animation.FFMpegWriter(fps = 60, bitrate = 5000)
+filename = Path("graphs/out_animation.mpg")
+filename.parent.mkdir(exist_ok = True, parents = True)
 with writer.saving(fig, filename, dpi = 100):
   for frame in range(1, 1000):
     draw_frame(frame)
