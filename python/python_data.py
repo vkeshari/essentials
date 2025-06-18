@@ -37,6 +37,9 @@ np.repeat(1, 3) # --> [1, 1, 1] -- same as [1] * 5 for lists
 np.append([1, 2], [3, 4], axis = 0) # --> [1, 2, 3, 4] -- same as [1, 2] + [3, 4] for lists
 np.concatenate(([1, 2], [3, 4], (5, 6))) # --> [1, 2, 3, 4, 5, 6] (allows a tuple of arrays)
 
+# Split an array
+np.array_split([1, 2, 3, 4, 5], 3) # --> [[1, 2], [3, 4], [5]]
+
 
 ### numpy matrices ###
 

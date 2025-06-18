@@ -25,10 +25,9 @@ fig.tight_layout()
 plt.show()
 
 # Save plot
+fig.tight_layout()
 filename = Path("graphs/out_graph.png")
 filename.parent.mkdir(exist_ok = True, parents = True)
-
-fig.tight_layout()
 fig.savefig(filename)
 plt.close()
 
@@ -77,13 +76,14 @@ ax.grid(True, which = 'both', axis = 'both', alpha = 0.5)
 # set different alphas for major and minor ticks
 
 # Text
-plt.text(x = 50, y = 1000, s = str(date), rotation = 45,
+plt.text(x = 50, y = 1000, s = str(date), rotation = 45, # both x and y are in coordinate space
               alpha = 0.8, fontsize = 'medium',
               horizontalalignment = 'left', # ['left', 'right', 'center']
               verticalalignment = 'top', # ['top', 'bottom', 'center']
             )
 
 # Horizontal and vertical lines
+# Position is in coordinate space but bounds are in graph space: (0, 1)
 plt.axhline(y = 50, xmin = 0, xmax = 0.9, linestyle = ':', linewidth = 5)
 plt.axvline(x = 1000, ymin = 0.1, color = 'grey', alpha = 0.5, linestyle = '--')
 
