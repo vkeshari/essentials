@@ -95,11 +95,15 @@ ax.add_patch(Rectangle((x0, y0), height = 1, width = 1, edgecolor = 'red', facec
 
 
 ### Colors ###
-from matplotlib import cm
+from matplotlib import cm, colors
 
 # Assign a named color
 mycolor = 'darkgrey'
 # Named colors: https://matplotlib.org/stable/gallery/color/named_colors.html
+
+# Get named color lists
+list(colors.TABLEAU_COLORS.keys()) # 10 tableau colors (default)
+list(colors.CSS4_COLORS.keys()) # 148 CSS4 colors -- shuffle recommended
 
 # Assign a colormap
 cmap = 'turbo'
