@@ -102,7 +102,7 @@ mycolor = 'darkgrey'
 # Named colors: https://matplotlib.org/stable/gallery/color/named_colors.html
 
 # Get named color lists
-list(colors.TABLEAU_COLORS.keys()) # 10 tableau colors (default)
+list(colors.TABLEAU_COLORS.keys()) # 10 tableau colors (default) -- 'tab:blue', 'tab:orange', ...
 list(colors.CSS4_COLORS.keys()) # 148 CSS4 colors -- shuffle recommended
 
 # Assign a colormap
@@ -128,10 +128,9 @@ ax.legend(handles = [line1, line2])
 
 # Colorbar with labels
 cbar = plt.colorbar(line1,
-                      shrink = 0.75, aspect = 50, # aspect is y / x
-                      format = "%d", pad = 0.01,
-                      ticks = [1, 2, 5, 10],
-                    )
+                    shrink = 0.75, aspect = 50, # aspect is y / x
+                    format = "%d", pad = 0.01,
+                    ticks = [1, 2, 5, 10])
 cbar.set_label('No. of players', size = 'large')
 
 cbar.ax.tick_params(labelsize = 'medium')
@@ -142,9 +141,8 @@ cbar.ax.set_yticklabels([str(t) for t in ticks], fontsize = 'medium')
 
 # Line Chart
 plt.plot(xs, ys, \
-            linestyle = '-', linewidth = 5, antialiased = True,
-            alpha = 0.5, color = 'darkgrey',
-            )
+          linestyle = '-', linewidth = 5, antialiased = True,
+          alpha = 0.5, color = 'darkgrey')
 # linestyle in ['', '-', '--', ':', '-.']
 
 plt.plot(xs, ys, \
@@ -153,10 +151,14 @@ plt.plot(xs, ys, \
             )
 # Markers: https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers
 
+# Error bars
+plt.errorbar(x, y, yerr = yerr, # Symmetrical yerr around middle point
+              linewidth = 8, capsize = 6, capthick = 2,
+              color = 'tab:blue', alpha = 0.5, antialiased = True)
+# Asymmetrical yerr = np.array([y_lower_length, y_higher_length]).reshape(2, -1)
+
 # Scatterplot
-plt.scatter(xs, ys, s = sizes, c = cols,
-                marker = None, alpha = 0.5,
-              )
+plt.scatter(xs, ys, s = sizes, c = cols, marker = None, alpha = 0.5)
 
 # Bar
 ax.bar(xs, ys, width = 10, align = 'edge', # align in ['center', 'edge']
@@ -164,32 +166,31 @@ ax.bar(xs, ys, width = 10, align = 'edge', # align in ['center', 'edge']
 
 # Horizontal Bars
 ax.barh(y = y_coords, width = vals, align = 'center', # align in ['center', 'edge']
-          height = 0.9, left = start_vals,
-          color = cols, alpha = 0.6,
-        )
+        height = 0.9, left = start_vals,
+        color = cols, alpha = 0.6)
 
 # Histogram
 ax.hist(data, bins = 10, \
-          cumulative = False, range = (0, 100), # only data in range is plotted
-          align = 'mid', # align in ['left', 'right', 'mid']
-          orientation = 'vertical', # orientation in ['horizontal', 'vertical']
-          label = label, color = 'blue', alpha = 0.6)
+        cumulative = False, range = (0, 100), # only data in range is plotted
+        align = 'mid', # align in ['left', 'right', 'mid']
+        orientation = 'vertical', # orientation in ['horizontal', 'vertical']
+        label = label, color = 'blue', alpha = 0.6)
 
 # Histogram with unequal bins
 ax.hist(data, bins = [0, 20, 80, 100], # --> bins are [0, 20), [20, 80), [80, 100]
-          label = label, color = 'red', alpha = 0.4)
+        label = label, color = 'red', alpha = 0.4)
 
 # Heatmap
 # By default, origin is 'upper' (like scan line printing an image)
 # aspect can be a float (ratio of the scale of axes)
 #   e.g. if x-axis is in [0, 1] and y-axis is in [0, 10], aspect should be 0.1 for square image
 plt.imshow(xy, origin = 'lower', aspect = 'auto', # aspect in ['equal', 'auto'] or float
-              extent = (xmin, xmax, ymin, ymax),
-              cmap = 'viridis', vmin = 0, vmax = 1) # [vmin, vmax] is range of data to plot
+            extent = (xmin, xmax, ymin, ymax),
+            cmap = 'viridis', vmin = 0, vmax = 1) # [vmin, vmax] is range of data to plot
 
 # Contours
 plt.contour(xy, levels = range(0, 10), colors = 'white', # or list of colors
-              alpha = 0.5, antialiased = True)
+            alpha = 0.5, antialiased = True)
 
 
 ### Image ###
