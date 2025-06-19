@@ -15,8 +15,7 @@ fig, ax = plt.subplots(figsize = resolution)
 fig, axs = plt.subplots(nrows = 2, ncols = 3,
                             sharex = True, sharey = False, # Share subplot properties
                             width_ratios = [1, 2, 3], # Relative subplot dimensions
-                            height_ratios = [2, 3],
-                          )
+                            height_ratios = [2, 3])
 # axs === ((ax11, ax12, ax13), (ax21, ax22, ax23))
 
 
@@ -79,8 +78,7 @@ ax.grid(True, which = 'both', axis = 'both', alpha = 0.5)
 plt.text(x = 50, y = 1000, s = str(date), rotation = 45, # both x and y are in coordinate space
               alpha = 0.8, fontsize = 'medium',
               horizontalalignment = 'left', # ['left', 'right', 'center']
-              verticalalignment = 'top', # ['top', 'bottom', 'center']
-            )
+              verticalalignment = 'top') # ['top', 'bottom', 'center']
 
 # Horizontal and vertical lines
 # Position is in coordinate space but bounds are in graph space: (0, 1)

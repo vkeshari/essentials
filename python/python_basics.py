@@ -51,6 +51,12 @@ s.find('l') # --> 2
         .format(name = 'Virat', age = 35, num = 5.555)
 # For string arguments, <N and >N mean N wide, left and right align respectively
 
+s = 'Num_Bins'
+s.upper() # --> 'NUM_BINS'
+s.lower() # --> 'num_bins'
+s.replace('_', ' ') # --> 'Num Bins'
+s.capitalize() # --> 'Num_bins'
+
 
 ### list ###
 
@@ -95,6 +101,7 @@ d = {1 : 'a', 2: 'b'}
 d.keys() # Returns a set
 d.values()
 d.items() # tuple
+d | e # add items from e to d, overwriting with values in e (| and ^ not supported)
 
 del d[2]
 
