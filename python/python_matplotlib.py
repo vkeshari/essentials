@@ -13,9 +13,9 @@ fig, ax = plt.subplots(figsize = resolution)
 
 # Multiple plots
 fig, axs = plt.subplots(nrows = 2, ncols = 3,
-                            sharex = True, sharey = False, # Share subplot properties
-                            width_ratios = [1, 2, 3], # Relative subplot dimensions
-                            height_ratios = [2, 3])
+                        sharex = True, sharey = False, # Share subplot properties
+                        width_ratios = [1, 2, 3], # Relative subplot dimensions
+                        height_ratios = [2, 3])
 # axs === ((ax11, ax12, ax13), (ax21, ax22, ax23))
 
 
@@ -76,9 +76,9 @@ ax.grid(True, which = 'both', axis = 'both', alpha = 0.5)
 
 # Text
 plt.text(x = 50, y = 1000, s = str(date), rotation = 45, # both x and y are in coordinate space
-              alpha = 0.8, fontsize = 'medium',
-              horizontalalignment = 'left', # ['left', 'right', 'center']
-              verticalalignment = 'top') # ['top', 'bottom', 'center']
+          alpha = 0.8, fontsize = 'medium',
+          horizontalalignment = 'left', # ['left', 'right', 'center']
+          verticalalignment = 'top') # ['top', 'bottom', 'center']
 
 # Horizontal and vertical lines
 # Position is in coordinate space but bounds are in graph space: (0, 1)
@@ -89,7 +89,7 @@ plt.axvline(x = 1000, ymin = 0.1, color = 'grey', alpha = 0.5, linestyle = '--')
 from matplotlib.patches import Rectangle
 
 ax.add_patch(Rectangle((x0, y0), height = 1, width = 1, edgecolor = 'red', facecolor = 'green',
-                          linewidth = 2, alpha = 1.0, fill = True))
+                        linewidth = 2, alpha = 1.0, fill = True))
 
 
 ### Colors ###
@@ -153,7 +153,11 @@ plt.plot(xs, ys, \
 plt.errorbar(x, y, yerr = yerr, # Symmetrical yerr around middle point
               linewidth = 8, capsize = 6, capthick = 2,
               color = 'tab:blue', alpha = 0.5, antialiased = True)
-# Asymmetrical yerr = np.array([y_lower_length, y_higher_length]).reshape(2, -1)
+# Asymmetrical yerr = np.array([y_below_length, y_above_length]).reshape(2, -1)
+
+# Fill between curves
+ax.fill_between(xs, ys_1, ys_2, step = 'mid', # optional step in ['pre', 'post', 'mid']
+                color = 'tab:orange', alpha = 0.5, antialiased = True)
 
 # Scatterplot
 plt.scatter(xs, ys, s = sizes, c = cols, marker = None, alpha = 0.5)
