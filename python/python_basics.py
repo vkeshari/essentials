@@ -51,6 +51,13 @@ s.find('l') # --> 2
         .format(name = 'Virat', age = 35, num = 5.555)
 # For string arguments, <N and >N mean N wide, left and right align respectively
 
+# f-strings (most efficient) -- allows in-string expressions (can't use \t, \n, etc)
+name = 'Virat'
+age = 35
+debut_age = 20
+f'My name: {name}. my age: {age:3d}.\nI have been playing for {age - debut_age:.1f} years.'
+
+# String manipulations
 s = 'Num_Bins'
 s.upper() # --> 'NUM_BINS'
 s.lower() # --> 'num_bins'
