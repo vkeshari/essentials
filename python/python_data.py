@@ -134,10 +134,12 @@ rng = np.random.default_rng(seed = [1, 2, 3])
 rng.random()
 rng.random(size = (2, 3))
 
-rng.integer(10)
-rng.integer(low = 0, high = 10, size = (2, 3))
+rng.integers(10) # in [0, high)
+rng.integers(low = 0, high = 10, size = (2, 3))
 
-rng.choice(['a', 'b', 'c'], size = (2, 3))
+rng.choice(['a', 'b', 'c'], size = (2, 3), replace = False)
+# replace = True by default, will pick repeated values.
+
 rng.shuffle(['a', 'b', 'c']) # shuffles in-place
 
 # Distributions

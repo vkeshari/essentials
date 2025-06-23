@@ -64,6 +64,13 @@ s.lower() # --> 'num_bins'
 s.replace('_', ' ') # --> 'Num Bins'
 s.capitalize() # --> 'Num_bins'
 
+# Special string types
+u'Unicode string'
+r'Raw\tString \n'
+
+'Hello' == u'Hello' # --> True
+u'Hello' == r'Hello' # --> True
+
 
 ### list ###
 

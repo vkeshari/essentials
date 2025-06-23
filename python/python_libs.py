@@ -147,7 +147,34 @@ text = page.read().decode('utf-8')
 
 
 ### regexp ###
+import re
+
+pat = r'^[HA].+\.xls.*' # always use raw strings
+
+# These return re.Match or None
+m = re.match(pat, "Hello.xls") # Prefix match (only match with beginning of string)
+s = re.search(pat, "Hello.xls") # Search for any match in string
+fm = re.fullmatch(pat, "Hello.xls") # Search for a full string match
+
+# Working with re.Match
 # TODO
+
+# Compilation
+rpat = re.compile(pat) # returns re.Pattern, compilation not necessary for performance
+rpat.search("Hello.xls") # same as re.search(pat, "Hello.xls")
+
+# Utility methods
+pat = r'[XY12]+'
+
+# These return lists
+fa = re.findall(pat, "YAXBYXC21") # --> ['Y', 'X', 'YX', '21']
+parts = re.split(pat, "YAXBYXC21") # --> ['', 'A', 'B', 'C', '']
+
+# These return a string
+sub = re.sub(pat, r'A', "X1B3YXA") # --> "ABAA"
+
+# Escaping a string for match
+re.escape(".*\n.*") # escaped version of pattern with \\ \. \* etc
 
 
 ### csv ###
