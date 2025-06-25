@@ -1,5 +1,5 @@
 # Each folder with __init__.py is a module, each file in it is a submodule
-from containers import shape as shp
+from containers import shape_inheritance as shp
 from util import creator, printer
 
 s = shp.Square(5)

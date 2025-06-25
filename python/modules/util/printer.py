@@ -2,7 +2,7 @@
 from . import creator as cr
 
 # import a submodule from a sibling module with module name
-from containers import shape as shp
+from containers import shape_inheritance as shp
 
 class SquarePrinter:
 

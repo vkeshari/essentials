@@ -1,5 +1,5 @@
 # import a submodule from a sibling module with module name
-from containers import shape as shp
+from containers import shape_inheritance as shp
 
 
 def create_basic_square():

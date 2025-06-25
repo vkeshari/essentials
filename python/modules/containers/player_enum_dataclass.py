@@ -75,7 +75,7 @@ def check_dataclass():
 
 if __name__ == "__main__":
   print()
-  print("CHECK ENUMS")
+  print("CHECK ENUM")
   check_enums()
 
   print()
