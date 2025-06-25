@@ -87,6 +87,9 @@ reversed(m) # --> [2, 3, 1]
 for i, v in enumerate(l):
   pass
 
+# List comprehension
+[i for i in range(5) if i > 2] # --> [3, 4]
+
 # Create list from generators
 l = list(range(0, 10, 2))
 l = [*range(0, 10, 2)]
@@ -108,6 +111,9 @@ t = {2, 3, 4}
 s - t
 s & t # boolean operators & | and ^
 
+# Set comprehension
+{i for i in range(5) if i > 2} # --> {3, 4}
+
 
 ### dict ###
 
@@ -118,6 +124,11 @@ d.items() # tuple
 d | e # add items from e to d, overwriting with values in e (| and ^ not supported)
 
 del d[2]
+
+# Dict comprehension
+{i: [] for i in range(5) if i > 2} # --> {3: [], 4: []}
+
+# Dict sorting
 
 sorted(d) # sorted keys
 dict(sorted(d.items())) # sorts by key
