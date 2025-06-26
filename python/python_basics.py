@@ -94,6 +94,19 @@ for i, v in enumerate(l):
 l = list(range(0, 10, 2))
 l = [*range(0, 10, 2)]
 
+# List unpacking
+def takes_three_args(arg1, arg2, arg3):
+  print(f"{arg1} {arg2} {arg3}")
+
+def takes_any_args(*args):
+  [print(a) for a in args]
+
+args = [1, 2, 3]
+# *args unpacks args --> 1, 2, 3
+
+takes_three_args(*args)
+takes_any_args(*args, 4, 5)
+
 
 ### tuple ###
 
