@@ -164,6 +164,17 @@ stats.percentileofscore(data, 0.5)
 stats.scoreatpercentile(data, 50)
 # Both methods will average / interpolate.
 
+# Correlation
+vals1 = [1, 2, 3, 4]
+vals2 = [4, 3, 2, 1]
+
+p = stats.pearsonr(vals1, vals2)
+p.statistic
+p.pvalue
+
+s_stat, s_pval = stats.spearmanr(vals1, vals2)
+r_stat, r_pval = stats.kendalltau(vals1, vals2)
+
 
 ### scipy.interpolate ###
 from scipy import interpolate
