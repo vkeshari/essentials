@@ -79,6 +79,8 @@ l.append(4)
 l.pop() # --> 4
 del l[0]
 
+l.index(2) # --> 1
+
 m = [1, 3, 2]
 sorted(m, reverse = True) # --> [3, 2, 1]
 reversed(m) # --> [2, 3, 1]

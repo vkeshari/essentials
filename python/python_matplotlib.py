@@ -116,8 +116,10 @@ colors = cm.brg(color_stops)
 ### Legend ###
 
 # Provide labels
-ax.legend(labels = labs, loc = 'best', fontsize = 'medium')
+ax.legend(labels = labs, loc = 'best', fontsize = 'medium', alignment = 'left',
+          title = "I am legend")
 # loc in ['best', 'upper left', 'center right', 'lower center', ...]
+# alignment (of legend entries) in ['left', 'right', 'center']
 
 # Use assigned labels
 line1, _ = ax.plot([1, 2], [1, 2], label = 'RED TEAM')

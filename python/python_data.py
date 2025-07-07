@@ -49,12 +49,16 @@ matrix = np.vstack(([1, 2], [3, 4])) # --> [[1, 2], [3, 4]]  -- same as [[1, 2]]
 # Make a 1-d array from a matrix
 matrix.flatten() # --> [1, 2, 3, 4]
 
+# Slices of a matrix
+matrix[ : , 0] # --> [1, 3]
+matrix[ : , 1] # --> [2, 4]
+
 # Transpose a matrix
-m = np.array([(1,2,3),(4,5,6)]) # 2x3
-np.transpose(m) # --> [(1,4),(2,5),(3,6)]
+m = np.array([(1, 2, 3), (4, 5, 6)]) # 2x3
+np.transpose(m) # --> [[1, 4], [2, 5], [3, 6]]
 
 # Reshape a matrix
-m = np.array([(1,2,3),(4,5,6)]) # 2x3
+m = np.array([(1, 2, 3), (4, 5, 6)]) # 2x3
 
 # -1 means ignore this dimension, reshape to fit the others
 m.reshape(-1, 1) # --> 6x1
@@ -225,3 +229,22 @@ from fitter import Fitter
 f = Fitter(data)
 f.fit()
 print (f.summary(Nbest = 10))
+
+
+### sklearn : Principal component analysis ###
+from sklearn.decomposition import PCA
+
+dataset = [[1, 2, 3, 4], [5, 6, 7, 8]] # 2 points in 4 dimensions
+pca = PCA(n_components = 4)
+pca.fit(dataset)
+pca.explained_variance_ratio_ # Variance ratios along each principal axis (sum = 1)
+
+# Dimensionality reduction
+pca = PCA(n_components = 2)
+pca.fit(dataset)
+pca.transform(dataset)
+# Alternative combined fit and transform
+pca.fit_transform(dataset)
+
+retained_variance = sum(pca.explained_variance_ratio_)
+pca.components_ # Principal axes component vectors (n_components x n_features matrix)
